@@ -32,7 +32,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# raw materials drop folder
-/public/matrail
-

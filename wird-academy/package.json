@@ -1,0 +1,17 @@
+{
+  "name": "wird-academy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3006",
+    "build": "next build",
+    "start": "next start -p 3006"
+  },
+  "dependencies": {
+    "lucide-react": "^1.16.0",
+    "motion": "^12.4.7",
+    "next": "^15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

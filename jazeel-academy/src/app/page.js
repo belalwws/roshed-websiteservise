@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TrialModal from '../components/TrialModal';
 import ReviewsGallery from '../components/ReviewsGallery';
+import LiveClassesShowcase from '../components/LiveClassesShowcase';
 import { 
   Sparkles, 
   Award, 
@@ -599,6 +600,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Live Classroom Demonstrations */}
+      <LiveClassesShowcase onOpenTrial={() => setIsTrialOpen(true)} />
 
       {/* Programs Showcase */}
       <section className="courses-section" id="programs">

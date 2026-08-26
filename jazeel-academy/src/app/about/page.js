@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import TrialModal from '../../components/TrialModal';
+import CredentialsShowcase from '../../components/CredentialsShowcase';
 import { 
   Award, 
   Sparkles, 
@@ -199,6 +200,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* Official Credentials, Sanad Ijazahs & Azhar Licenses */}
+      <CredentialsShowcase onOpenTrial={() => setIsTrialOpen(true)} />
 
       {/* CTA Strip */}
       <section className="cta-banner">
