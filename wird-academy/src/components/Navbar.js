@@ -84,6 +84,9 @@ export default function Navbar({ onOpenTrial }) {
               <Link href="/#why-us" className="nav-item">
                 Why Us
               </Link>
+              <Link href="/#feedback" className="nav-item">
+                Reviews
+              </Link>
               <Link href="/about#faculty" className="nav-item">
                 Faculty
               </Link>
@@ -169,6 +172,14 @@ export default function Navbar({ onOpenTrial }) {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span>🛡️ Why Families Trust Us (ليه إحنا)</span>
+                  <ChevronRight size={16} />
+                </Link>
+                <Link 
+                  href="/#feedback" 
+                  className="mobile-nav-item"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <span>⭐ Verified Reviews &amp; Honors (آراء أولياء الأمور)</span>
                   <ChevronRight size={16} />
                 </Link>
                 <Link 

@@ -64,6 +64,7 @@ export default function Footer({ onOpenTrial }) {
               <Link href="/#courses" className="footer-link">Academic Programs (البرامج)</Link>
               <Link href="/#values" className="footer-link">Core Values (القيم الجوهرية)</Link>
               <Link href="/#why-us" className="footer-link">Why Choose Us (ليه إحنا)</Link>
+              <Link href="/#feedback" className="footer-link">Verified Reviews (آراء أولياء الأمور)</Link>
               <Link href="/about#faculty" className="footer-link">Certified Scholars (المعلمون)</Link>
               <Link href="/contact" className="footer-link">Contact Us (تواصل معنا)</Link>
             </div>

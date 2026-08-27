@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TrialModal from '../components/TrialModal';
+import FeedbackGallery from '../components/FeedbackGallery';
 import { 
   Sparkles, 
   MessageCircle, 
@@ -605,6 +606,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Verified Parent Reviews & Student Achievement Certificates */}
+      <FeedbackGallery onOpenTrial={() => setIsTrialOpen(true)} />
 
       {/* Faculty Preview Strip */}
       <section style={{ padding: '70px 0', background: '#ffffff' }}>
