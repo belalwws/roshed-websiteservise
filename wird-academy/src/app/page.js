@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -20,6 +20,7 @@ import {
   Ear, 
   HeartHandshake, 
   GraduationCap, 
+  ChevronLeft,
   ChevronRight, 
   ArrowRight,
   HelpCircle,
@@ -27,6 +28,68 @@ import {
 } from 'lucide-react';
 
 export default function HomePage() {
+  const HERO_SLIDES = [
+    {
+      id: 'quran-tajweed',
+      tag: '📖 1. Quran & Tajweed',
+      tagAr: 'التلاوة الصحيحة وأحكام التجويد',
+      badge: 'Core Recitation • اقرأه كما أُنزِل',
+      title: 'Recite As It Was Revealed',
+      desc: 'Master Arabic phonetics and Tajweed with Al-Azhar scholars. Every letter from its exact articulation point (Makhraj), corrected live.',
+      image: '/assets/generated/hero-quran-3d.jpg',
+      pill1Title: 'Al-Azhar Ijazah',
+      pill1Sub: 'Sanad Connected Reciters',
+      pill2Title: 'Live 1-on-1 Correction',
+      pill2Sub: 'Sound by Sound Precision'
+    },
+    {
+      id: 'interactive-learning',
+      tag: '💻 2. Noor Al-Bayan',
+      tagAr: 'تأسيس القراءة بالصوت والصورة',
+      badge: 'Interactive Online Setup • نور البيان',
+      title: 'Sound by Sound, Word by Word',
+      desc: 'Child-friendly pedagogy, digital Quranic whiteboards, and Noor Al-Bayan phonetics designed for young kids and non-Arabic speaking families.',
+      image: '/assets/generated/interactive-learning-3d.jpg',
+      pill1Title: 'Child-Centric Pedagogy',
+      pill1Sub: 'Engaging & Patient Tutors',
+      pill2Title: 'Never a Group Slot',
+      pill2Sub: 'Private 1-on-1 Attention'
+    },
+    {
+      id: 'azhar-scholars',
+      tag: '🎓 3. Azhar Scholars',
+      tagAr: 'نخبة من علماء الأزهر المعتمدين',
+      badge: 'Authentic Sanad • إسناد متصل',
+      title: '5 Certified Al-Azhar Faculty',
+      desc: 'Learn directly with certified scholars holding chains of transmission (Sanad) in Hafs, Shu\'bah, Tuḥfat al-Aṭfāl, and Bukhari/Muslim.',
+      image: '/assets/generated/azhar-scholars-3d.jpg',
+      pill1Title: '5 Verified Scholars',
+      pill1Sub: 'Sharī\'ah & Quranic Sciences',
+      pill2Title: '3-Month Reviews',
+      pill2Sub: 'Documented Milestones'
+    }
+  ];
+
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
+  const [isHeroPaused, setIsHeroPaused] = useState(false);
+
+  // Auto-advance hero slides
+  useEffect(() => {
+    if (isHeroPaused) return;
+    const interval = setInterval(() => {
+      setActiveHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isHeroPaused, HERO_SLIDES.length]);
+
+  const handleHeroNext = () => {
+    setActiveHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const handleHeroPrev = () => {
+    setActiveHeroSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+  };
+
   const [isTrialOpen, setIsTrialOpen] = useState(false);
   const [activeCourseCategory, setActiveCourseCategory] = useState('all');
   const [activeFaq, setActiveFaq] = useState(null);
@@ -241,37 +304,97 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Visual with 3D Quran Artwork */}
-            <div className="hero-visual">
-              <div className="hero-image-wrap">
-                <img 
-                  src="/assets/generated/hero-quran-3d.jpg" 
-                  alt="Holy Quran on Gilded Velvet Stand with Radiant Illumination" 
-                  width={440}
-                  height={440}
-                />
+            {/* Right Visual: Interactive Hero Visual Slider */}
+            <div 
+              className="hero-visual"
+              onMouseEnter={() => setIsHeroPaused(true)}
+              onMouseLeave={() => setIsHeroPaused(false)}
+            >
+              <div className="hero-slider-container">
+                {/* Main Slide Frame */}
+                <div className="hero-slide-frame">
+                  <img 
+                    key={HERO_SLIDES[activeHeroSlide].id}
+                    src={HERO_SLIDES[activeHeroSlide].image} 
+                    alt={HERO_SLIDES[activeHeroSlide].title} 
+                    className="hero-slide-img"
+                    width={420}
+                    height={420}
+                  />
+
+                  {/* Gradient Overlay with Live Slide Info */}
+                  <div className="hero-slide-overlay">
+                    <span className="hero-slide-tag">
+                      {HERO_SLIDES[activeHeroSlide].badge}
+                    </span>
+                    <h3 className="hero-slide-title">
+                      {HERO_SLIDES[activeHeroSlide].title}
+                    </h3>
+                    <p className="hero-slide-desc">
+                      {HERO_SLIDES[activeHeroSlide].desc}
+                    </p>
+                  </div>
+
+                  {/* Navigation Arrows */}
+                  <button 
+                    onClick={handleHeroPrev}
+                    className="hero-slider-nav-btn hero-slider-nav-prev"
+                    aria-label="Previous Slide"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  <button 
+                    onClick={handleHeroNext}
+                    className="hero-slider-nav-btn hero-slider-nav-next"
+                    aria-label="Next Slide"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+
+                {/* 3 Clickable Slide Tabs */}
+                <div className="hero-slider-pills">
+                  {HERO_SLIDES.map((slide, idx) => (
+                    <button
+                      key={slide.id}
+                      onClick={() => setActiveHeroSlide(idx)}
+                      className={`hero-slider-pill-btn ${activeHeroSlide === idx ? 'active' : ''}`}
+                    >
+                      <span>{slide.tag}</span>
+                      <span className="hero-slider-pill-sub">{slide.tagAr}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
 
+              {/* Floating Dynamic Badges */}
               <div className="hero-floating-badges-mobile">
-                {/* Floating Badge 1 */}
                 <div className="floating-card floating-card-1">
-                  <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'var(--gold-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-800)', flexShrink: 0 }}>
-                    <Award size={20} />
+                  <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'var(--gold-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-800)', flexShrink: 0 }}>
+                    <Award size={18} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '13.5px', fontWeight: 800, color: 'var(--primary-900)' }}>Al-Azhar Ijazah</div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Sanad Connected Reciters</div>
+                    <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>
+                      {HERO_SLIDES[activeHeroSlide].pill1Title}
+                    </div>
+                    <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
+                      {HERO_SLIDES[activeHeroSlide].pill1Sub}
+                    </div>
                   </div>
                 </div>
 
-                {/* Floating Badge 2 */}
                 <div className="floating-card floating-card-2">
-                  <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(37, 211, 102, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#25d366', flexShrink: 0 }}>
-                    <Users size={20} />
+                  <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(37, 211, 102, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#25d366', flexShrink: 0 }}>
+                    <Users size={18} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '13.5px', fontWeight: 800, color: 'var(--primary-900)' }}>1-on-1 Dedicated</div>
-                    <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Every Lesson Belongs to You</div>
+                    <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>
+                      {HERO_SLIDES[activeHeroSlide].pill2Title}
+                    </div>
+                    <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
+                      {HERO_SLIDES[activeHeroSlide].pill2Sub}
+                    </div>
                   </div>
                 </div>
               </div>

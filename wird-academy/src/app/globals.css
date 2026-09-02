@@ -552,32 +552,168 @@ button {
   flex-shrink: 0;
 }
 
+/* Hero Visual & Interactive Slider */
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.hero-image-wrap {
+.hero-slider-container {
   position: relative;
   width: 100%;
-  max-width: 440px;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(8, 27, 51, 0.22), 0 0 0 3px rgba(201, 154, 69, 0.4);
+  max-width: 460px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: var(--primary-900);
+  gap: 14px;
 }
 
-.hero-image-wrap img {
+.hero-slide-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  max-width: 420px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(8, 27, 51, 0.22), 0 0 0 2px rgba(201, 154, 69, 0.35);
+  background: var(--primary-950);
+}
+
+.hero-slide-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.hero-slide-frame:hover .hero-slide-img {
+  transform: scale(1.04);
+}
+
+.hero-slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 13, 26, 0.92) 0%, rgba(4, 13, 26, 0.3) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 20px;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+.hero-slide-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201, 154, 69, 0.3);
+  color: var(--gold-300);
+  border: 1px solid rgba(201, 154, 69, 0.45);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11.5px;
+  font-weight: 800;
+  width: fit-content;
+  margin-bottom: 6px;
+}
+
+.hero-slide-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.hero-slide-desc {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+}
+
+.hero-slider-nav-btn {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(4, 13, 26, 0.8);
+  border: 1px solid rgba(201, 154, 69, 0.45);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.hero-slider-nav-btn:hover {
+  background: var(--gold-600);
+  color: var(--primary-950);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.hero-slider-nav-prev {
+  left: 10px;
+}
+
+.hero-slider-nav-next {
+  right: 10px;
+}
+
+.hero-slider-pills {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 420px;
+  justify-content: center;
+}
+
+.hero-slider-pill-btn {
+  flex: 1;
+  padding: 8px 6px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1.5px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.25s ease;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--primary-900);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-slider-pill-btn:hover {
+  border-color: var(--gold-400);
+}
+
+.hero-slider-pill-btn.active {
+  background: var(--primary-900);
+  color: #ffffff;
+  border-color: var(--gold-500);
+  box-shadow: 0 4px 14px rgba(8, 27, 51, 0.18);
+}
+
+.hero-slider-pill-btn.active .hero-slider-pill-sub {
+  color: var(--gold-300);
+}
+
+.hero-slider-pill-sub {
+  font-size: 9.5px;
+  color: var(--gold-700);
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
 }
 
 .floating-card {
@@ -591,18 +727,18 @@ button {
   display: flex;
   align-items: center;
   gap: 12px;
-  z-index: 2;
+  z-index: 5;
   animation: float 4s ease-in-out infinite alternate;
 }
 
 .floating-card-1 {
-  top: 6%;
-  left: -4%;
+  top: 4%;
+  left: -6%;
 }
 
 .floating-card-2 {
-  bottom: 6%;
-  right: -2%;
+  bottom: 12%;
+  right: -4%;
   animation-delay: 2s;
 }
 
