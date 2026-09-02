@@ -181,9 +181,9 @@ export default function FeedbackGallery({ onOpenTrial }) {
               key={cat}
               onClick={() => setActiveTab(cat)}
               style={{
-                padding: '8px 20px',
+                padding: '7px 16px',
                 borderRadius: '999px',
-                fontSize: '13.5px',
+                fontSize: '12.5px',
                 fontWeight: 700,
                 border: activeTab === cat ? '1px solid var(--gold-600)' : '1px solid var(--border-light)',
                 background: activeTab === cat ? 'var(--primary-900)' : '#ffffff',
@@ -194,8 +194,8 @@ export default function FeedbackGallery({ onOpenTrial }) {
               }}
             >
               {cat === 'All' && '🌟 All Feedback & Honors'}
-              {cat === 'Parent Testimonials' && '💬 Parent Testimonials (WhatsApp)'}
-              {cat === 'Student Certificates' && '📜 Student Achievement Certificates'}
+              {cat === 'Parent Testimonials' && '💬 WhatsApp Reviews'}
+              {cat === 'Student Certificates' && '📜 Student Certificates'}
             </button>
           ))}
         </div>
@@ -204,8 +204,8 @@ export default function FeedbackGallery({ onOpenTrial }) {
         <div 
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '22px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 290px), 1fr))',
+            gap: '20px'
           }}
         >
           {filteredItems.map((item, idx) => (

@@ -127,9 +127,9 @@ export default function TrialModal({ isOpen, onClose }) {
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {/* First & Last Name */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '10px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
                     First Name (الاسم الأول) *
                   </label>
                   <input 
@@ -140,7 +140,7 @@ export default function TrialModal({ isOpen, onClose }) {
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       borderRadius: '10px',
                       border: '1px solid #cbd5e1',
                       fontSize: '13.5px'
@@ -149,7 +149,7 @@ export default function TrialModal({ isOpen, onClose }) {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
                     Last Name (الاسم الثاني) *
                   </label>
                   <input 
@@ -160,7 +160,7 @@ export default function TrialModal({ isOpen, onClose }) {
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       borderRadius: '10px',
                       border: '1px solid #cbd5e1',
                       fontSize: '13.5px'
@@ -170,9 +170,9 @@ export default function TrialModal({ isOpen, onClose }) {
               </div>
 
               {/* Age & Program */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '10px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
                     Student Age (عمر الطالب) *
                   </label>
                   <select 
@@ -180,7 +180,7 @@ export default function TrialModal({ isOpen, onClose }) {
                     onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       borderRadius: '10px',
                       border: '1px solid #cbd5e1',
                       fontSize: '13px'
@@ -194,7 +194,7 @@ export default function TrialModal({ isOpen, onClose }) {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
                     Program of Interest *
                   </label>
                   <select 
@@ -202,7 +202,7 @@ export default function TrialModal({ isOpen, onClose }) {
                     onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       borderRadius: '10px',
                       border: '1px solid #cbd5e1',
                       fontSize: '13px'
@@ -220,7 +220,7 @@ export default function TrialModal({ isOpen, onClose }) {
 
               {/* Current Level Notes (From intake form specification) */}
               <div>
-                <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
                   Current Recitation Level &amp; Experience (مستوى الطالب) *
                 </label>
                 <textarea 
@@ -231,7 +231,7 @@ export default function TrialModal({ isOpen, onClose }) {
                   onChange={(e) => setFormData({ ...formData, levelNotes: e.target.value })}
                   style={{
                     width: '100%',
-                    padding: '10px 12px',
+                    padding: '9px 12px',
                     borderRadius: '10px',
                     border: '1px solid #cbd5e1',
                     fontSize: '13px',
@@ -241,9 +241,9 @@ export default function TrialModal({ isOpen, onClose }) {
               </div>
 
               {/* WhatsApp Phone & Country */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '10px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
                     WhatsApp Number *
                   </label>
                   <input 
@@ -254,7 +254,7 @@ export default function TrialModal({ isOpen, onClose }) {
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       borderRadius: '10px',
                       border: '1px solid #cbd5e1',
                       fontSize: '13.5px'
@@ -263,18 +263,17 @@ export default function TrialModal({ isOpen, onClose }) {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
-                    Country / Timezone *
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
+                    Country &amp; Preferred Time *
                   </label>
                   <input 
                     type="text"
-                    required
-                    placeholder="e.g. USA (EST), UK (GMT)"
+                    placeholder="e.g. USA (EST) - Evenings"
                     value={formData.country}
                     onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       borderRadius: '10px',
                       border: '1px solid #cbd5e1',
                       fontSize: '13.5px'
