@@ -543,7 +543,7 @@ export default function HomePage() {
       </section>
 
       {/* 4-Step Registration Journey (From Form) */}
-      <section style={{ padding: '80px 0', background: 'var(--bg-cream)', borderTop: '1px solid var(--border-light)' }}>
+      <section style={{ padding: '80px 0 60px', background: 'var(--bg-cream)', borderTop: '1px solid var(--border-light)' }}>
         <div className="container">
           <div className="section-header">
             <div className="section-tag">Simple 4-Step Journey</div>
@@ -551,11 +551,11 @@ export default function HomePage() {
               How to Begin Your <span className="navy-gradient-text">Learning Journey</span>
             </h2>
             <p className="section-subtitle">
-              From your initial consultation to earning verified Quranic milestones.
+              From your initial assessment request to earning verified Quranic milestones.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '50px' }}>
             <div style={{ background: '#ffffff', borderRadius: '16px', padding: '24px 20px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
               <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'var(--gold-100)', color: 'var(--gold-900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, marginBottom: '14px' }}>
                 1
@@ -602,6 +602,186 @@ export default function HomePage() {
               <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
                 Enjoy reports after every lesson and full quarterly milestone assessments. Progress you can clearly hear in the recitation.
               </p>
+            </div>
+          </div>
+
+          {/* Inline Trial Booking Card (Requested explicitly in client intake form) */}
+          <div 
+            id="book-trial-section"
+            style={{
+              background: 'linear-gradient(135deg, #081b33 0%, #0d284d 100%)',
+              borderRadius: '24px',
+              padding: '40px 32px',
+              color: '#ffffff',
+              border: '2px solid var(--border-gold)',
+              boxShadow: 'var(--shadow-lg)'
+            }}
+          >
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '36px', alignItems: 'center' }}>
+              <div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(201, 154, 69, 0.25)', color: 'var(--gold-300)', padding: '4px 14px', borderRadius: '999px', fontSize: '12px', fontWeight: 800, marginBottom: '12px' }}>
+                  <Sparkles size={13} /> 100% Complimentary Trial Assessment
+                </div>
+                <h3 style={{ fontSize: 'clamp(24px, 2.5vw, 34px)', fontWeight: 800, lineHeight: 1.25, marginBottom: '12px' }}>
+                  Book Your Free 1-on-1 Trial Session
+                </h3>
+                <p style={{ fontSize: '14.5px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '20px' }}>
+                  Fill out the form with your details to receive an authentic recitation diagnostic with our Al-Azhar certified scholars. We match you with the ideal teacher for your timezone.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: 'var(--gold-200)' }}>
+                    <CheckCircle2 size={16} color="var(--gold-400)" />
+                    <span>Live Makharij &amp; Recitation Level Evaluation</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: 'var(--gold-200)' }}>
+                    <CheckCircle2 size={16} color="var(--gold-400)" />
+                    <span>Tailored 3-Month Learning Roadmap</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: 'var(--gold-200)' }}>
+                    <CheckCircle2 size={16} color="var(--gold-400)" />
+                    <span>No Commitment • 100% Free Consultation</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Form Box */}
+              <div style={{ background: '#ffffff', borderRadius: '18px', padding: '26px 22px', color: 'var(--primary-900)', boxShadow: 'var(--shadow-md)' }}>
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const target = e.target;
+                    const fName = target.firstName.value;
+                    const lName = target.lastName.value;
+                    const age = target.age.value;
+                    const course = target.course.value;
+                    const level = target.level.value;
+                    const phone = target.phone.value;
+                    const country = target.country.value;
+
+                    const msg = `*New Free Trial Booking - Wird Academy*%0A%0A` +
+                      `*Student Name:* ${encodeURIComponent(fName + ' ' + lName)}%0A` +
+                      `*Student Age:* ${encodeURIComponent(age)}%0A` +
+                      `*Program:* ${encodeURIComponent(course)}%0A` +
+                      `*Current Level & Notes:* ${encodeURIComponent(level || 'Beginner assessment')}%0A` +
+                      `*Country / Timezone:* ${encodeURIComponent(country || 'Global')}%0A` +
+                      `*WhatsApp:* ${encodeURIComponent(phone)}%0A`;
+
+                    window.open(`https://wa.me/201061858535?text=${msg}`, '_blank');
+                  }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
+                >
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                        First Name (الاسم الأول) *
+                      </label>
+                      <input 
+                        type="text" 
+                        name="firstName" 
+                        required 
+                        placeholder="e.g. Zayd" 
+                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                        Last Name (الاسم الثاني) *
+                      </label>
+                      <input 
+                        type="text" 
+                        name="lastName" 
+                        required 
+                        placeholder="e.g. Ali" 
+                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                        Student Age (عمر الطالب) *
+                      </label>
+                      <select 
+                        name="age" 
+                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12.5px' }}
+                      >
+                        <option value="Young Kids (4 - 7 Years)">Young Kids (4 - 7 Years)</option>
+                        <option value="Kids (8 - 12 Years)">Kids (8 - 12 Years)</option>
+                        <option value="Teens (13 - 17 Years)">Teens (13 - 17 Years)</option>
+                        <option value="Adults (18+ Years)">Adults (18+ Years)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                        Program of Interest *
+                      </label>
+                      <select 
+                        name="course" 
+                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12.5px' }}
+                      >
+                        <option value="Arabic Phonics & Noor Al-Bayan">1. Arabic Phonics & Noor Al-Bayan</option>
+                        <option value="Quran & Tajweed">2. Quran & Tajweed</option>
+                        <option value="Hifz — Quran Memorization">3. Hifz — Quran Memorization</option>
+                        <option value="Islamic Studies">4. Islamic Studies</option>
+                        <option value="Quranic Arabic">5. Quranic Arabic</option>
+                        <option value="Spoken Arabic">6. Spoken Arabic</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                      Current Recitation Level &amp; Goals (مستوى الطالب) *
+                    </label>
+                    <textarea 
+                      name="level" 
+                      rows={2} 
+                      required 
+                      placeholder="e.g. Knows Arabic letters / Beginner in Tajweed / Needs recitation correction..." 
+                      style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12.5px', resize: 'none' }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                        WhatsApp Number *
+                      </label>
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        required 
+                        placeholder="+1 (555) 000-0000" 
+                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
+                        Country / Timezone *
+                      </label>
+                      <input 
+                        type="text" 
+                        name="country" 
+                        placeholder="e.g. USA (EST) - Evenings" 
+                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
+                      />
+                    </div>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className="button button-gold full"
+                    style={{ minHeight: '42px', fontSize: '13.5px', marginTop: '4px' }}
+                  >
+                    <Sparkles size={15} />
+                    <span>Submit &amp; Schedule via WhatsApp</span>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
