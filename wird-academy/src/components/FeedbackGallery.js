@@ -181,9 +181,9 @@ export default function FeedbackGallery({ onOpenTrial }) {
               key={cat}
               onClick={() => setActiveTab(cat)}
               style={{
-                padding: '7px 16px',
+                padding: '8px 20px',
                 borderRadius: '999px',
-                fontSize: '12.5px',
+                fontSize: '13.5px',
                 fontWeight: 700,
                 border: activeTab === cat ? '1px solid var(--gold-600)' : '1px solid var(--border-light)',
                 background: activeTab === cat ? 'var(--primary-900)' : '#ffffff',
@@ -194,18 +194,18 @@ export default function FeedbackGallery({ onOpenTrial }) {
               }}
             >
               {cat === 'All' && '🌟 All Feedback & Honors'}
-              {cat === 'Parent Testimonials' && '💬 WhatsApp Reviews'}
-              {cat === 'Student Certificates' && '📜 Student Certificates'}
+              {cat === 'Parent Testimonials' && '💬 Parent Testimonials (WhatsApp)'}
+              {cat === 'Student Certificates' && '📜 Student Achievement Certificates'}
             </button>
           ))}
         </div>
 
         {/* Feedback Cards Grid */}
-        <div 
+        <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 290px), 1fr))',
-            gap: '20px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '22px'
           }}
         >
           {filteredItems.map((item, idx) => (
@@ -235,7 +235,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
               }}
             >
               {/* Media Preview Box */}
-              <div 
+              <div
                 style={{
                   position: 'relative',
                   height: item.type === 'certificate' ? '210px' : '220px',
@@ -243,8 +243,8 @@ export default function FeedbackGallery({ onOpenTrial }) {
                   overflow: 'hidden'
                 }}
               >
-                <img 
-                  src={item.image} 
+                <img
+                  src={item.image}
                   alt={item.title}
                   style={{
                     width: '100%',
@@ -258,13 +258,13 @@ export default function FeedbackGallery({ onOpenTrial }) {
                 />
 
                 {/* Badge Overlay */}
-                <div 
+                <div
                   style={{
                     position: 'absolute',
                     top: '10px',
                     left: '10px',
-                    background: item.type === 'certificate' 
-                      ? 'linear-gradient(135deg, #081b33 0%, #194682 100%)' 
+                    background: item.type === 'certificate'
+                      ? 'linear-gradient(135deg, #081b33 0%, #194682 100%)'
                       : 'rgba(37, 211, 102, 0.92)',
                     color: '#ffffff',
                     fontSize: '11px',
@@ -278,7 +278,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
                 </div>
 
                 {/* Bottom Click to Expand Bar */}
-                <div 
+                <div
                   style={{
                     position: 'absolute',
                     bottom: 0,
@@ -322,7 +322,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
                 {/* Tags */}
                 <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
                   {item.highlights.map((h, i) => (
-                    <span 
+                    <span
                       key={i}
                       style={{
                         fontSize: '10.5px',
@@ -344,7 +344,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
         </div>
 
         {/* Bottom Trust Banner */}
-        <div 
+        <div
           style={{
             marginTop: '36px',
             background: '#ffffff',
@@ -386,7 +386,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
 
       {/* Lightbox Zoom Modal */}
       {selectedItem && (
-        <div 
+        <div
           style={{
             position: 'fixed',
             inset: 0,
@@ -400,7 +400,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
           }}
           onClick={() => setSelectedItem(null)}
         >
-          <div 
+          <div
             style={{
               position: 'relative',
               maxWidth: '660px',
@@ -417,7 +417,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div 
+            <div
               style={{
                 padding: '14px 18px',
                 background: '#040d1a',
@@ -456,7 +456,7 @@ export default function FeedbackGallery({ onOpenTrial }) {
             </div>
 
             {/* Modal Image Box with Nav Arrows */}
-            <div 
+            <div
               style={{
                 position: 'relative',
                 background: selectedItem.type === 'certificate' ? '#ffffff' : '#020710',
@@ -469,8 +469,8 @@ export default function FeedbackGallery({ onOpenTrial }) {
                 padding: '12px'
               }}
             >
-              <img 
-                src={selectedItem.image} 
+              <img
+                src={selectedItem.image}
                 alt={selectedItem.title}
                 style={{
                   maxWidth: '100%',
