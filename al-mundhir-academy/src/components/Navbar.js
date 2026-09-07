@@ -155,7 +155,7 @@ export default function Navbar({ onOpenTrialModal }) {
         </nav>
 
         {/* Header Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {/* Quick WhatsApp Call/Chat */}
           <a
             href="https://wa.me/201551669364?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AF%D8%B1%D9%88%D8%B3%20%D9%88%D8%A8%D8%B1%D8%A7%D9%85%D8%AC%20%D8%A3%D9%83%D8%A7%D8%AF%D9%8A%D9%85%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B0%D8%B1"
@@ -164,8 +164,7 @@ export default function Navbar({ onOpenTrialModal }) {
             className="btn-whatsapp"
             style={{
               padding: '8px 16px',
-              fontSize: '0.88rem',
-              display: 'none'
+              fontSize: '0.88rem'
             }}
             id="header-whatsapp-btn"
           >
@@ -176,14 +175,14 @@ export default function Navbar({ onOpenTrialModal }) {
           {/* Book Trial CTA Button */}
           <button
             onClick={onOpenTrialModal}
-            className="btn-gold"
+            className="btn-gold desktop-trial-btn"
             style={{
-              padding: '9px 20px',
-              fontSize: '0.92rem',
+              padding: '9px 18px',
+              fontSize: '0.9rem',
               boxShadow: '0 4px 15px rgba(205, 168, 78, 0.35)'
             }}
           >
-            <Sparkles size={16} />
+            <Sparkles size={15} />
             <span>احجز حصة تجريبية مجاناً</span>
           </button>
 
@@ -194,18 +193,19 @@ export default function Navbar({ onOpenTrialModal }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'rgba(255, 255, 255, 0.08)',
-              border: '1px solid rgba(205, 168, 78, 0.3)',
-              color: '#ffffff',
-              width: '42px',
-              height: '42px',
+              background: isMobileMenuOpen ? 'var(--gold-gradient)' : 'rgba(255, 255, 255, 0.08)',
+              border: '1px solid rgba(205, 168, 78, 0.4)',
+              color: isMobileMenuOpen ? '#040e16' : '#ffffff',
+              width: '40px',
+              height: '40px',
               borderRadius: '10px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
             }}
             className="mobile-hamburger"
             aria-label="القائمة الرئيسية"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>

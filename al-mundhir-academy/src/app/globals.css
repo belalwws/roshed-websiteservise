@@ -324,12 +324,15 @@ body {
 .form-label {
   display: block;
   font-weight: 700;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   font-size: 0.95rem;
-  color: var(--text-primary);
+  color: #1e293b;
 }
-.section-dark .form-label {
-  color: #e2e8f0;
+.section-dark .form-label,
+.glass-card-dark .form-label,
+.luxury-card-dark .form-label {
+  color: #f8fafc !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .form-control {
@@ -343,20 +346,28 @@ body {
   color: var(--text-primary);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
+.form-control::placeholder {
+  color: #94a3b8;
+}
 .form-control:focus {
   outline: none;
   border-color: var(--gold-primary);
   box-shadow: 0 0 0 4px var(--gold-glow);
 }
 
-.section-dark .form-control {
-  background: rgba(12, 35, 51, 0.9);
-  border-color: rgba(205, 168, 78, 0.3);
+.section-dark .form-control,
+.glass-card-dark .form-control,
+.luxury-card-dark .form-control {
+  background: rgba(4, 14, 22, 0.85);
+  border-color: rgba(205, 168, 78, 0.35);
   color: #ffffff;
 }
-.section-dark .form-control:focus {
+.section-dark .form-control:focus,
+.glass-card-dark .form-control:focus,
+.luxury-card-dark .form-control:focus {
   border-color: var(--gold-primary);
   box-shadow: 0 0 0 4px var(--gold-glow);
+  background: rgba(7, 23, 34, 0.95);
 }
 
 /* Responsive Grid Helpers */
@@ -418,6 +429,15 @@ body {
 #header-whatsapp-btn {
   display: none;
 }
+.desktop-trial-btn {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .desktop-trial-btn {
+    display: inline-flex !important;
+  }
+}
 
 @media (min-width: 1140px) {
   .desktop-nav {
@@ -429,6 +449,11 @@ body {
   #header-whatsapp-btn {
     display: inline-flex !important;
   }
+}
+
+/* Smooth Section Scrolling */
+section[id] {
+  scroll-margin-top: 90px;
 }
 
 /* Custom Scrollbar */
