@@ -301,16 +301,6 @@ export default function HomePage() {
                     <span>Live 1-to-1 Online Learning</span>
                   </div>
                 </div>
-
-                {/* Caption below the image */}
-                <div className="hero-static-caption-bar">
-                  <div className="caption-text-main">
-                    Live 1-to-1 Online Learning
-                  </div>
-                  <div className="caption-text-sub">
-                    Personalised Quran recitation and Tajweed for the whole family
-                  </div>
-                </div>
               </div>
             </div>
           </div>
