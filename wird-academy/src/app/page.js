@@ -287,8 +287,8 @@ export default function HomePage() {
               <div className="hero-static-visual-card">
                 <div className="hero-static-img-frame">
                   <img 
-                    src="/assets/generated/live-1to1-learning.jpg" 
-                    alt="Live 1-to-1 Online Quran Learning Session at Wird Academy" 
+                    src="/assets/generated/family-quran-hero.jpg" 
+                    alt="Loving Muslim Family Learning Quran Online with Al-Azhar Scholar at Wird Academy" 
                     className="hero-static-photo"
                     width={520}
                     height={390}
@@ -302,13 +302,13 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Caption below the image as requested */}
+                {/* Caption below the image */}
                 <div className="hero-static-caption-bar">
                   <div className="caption-text-main">
                     Live 1-to-1 Online Learning
                   </div>
                   <div className="caption-text-sub">
-                    Direct scholarly mentoring with qualified Al-Azhar teachers
+                    Personalised Quran recitation and Tajweed for the whole family
                   </div>
                 </div>
               </div>

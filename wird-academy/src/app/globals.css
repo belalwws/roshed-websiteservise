@@ -1846,3 +1846,83 @@ button {
   }
 }
 
+/* ==========================================================================
+   STICKY FLOATING WHATSAPP BUTTON (Fixed on scroll)
+   ========================================================================== */
+.wird-floating-whatsapp {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 18px 0 14px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  animation: floatingPulse 2.8s infinite ease-in-out;
+}
+
+.wird-floating-whatsapp:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+  color: #ffffff;
+}
+
+.floating-whatsapp-icon {
+  flex-shrink: 0;
+  animation: gentleWiggle 4s infinite ease-in-out;
+}
+
+.floating-whatsapp-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.floating-whatsapp-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: ringPulse 2.4s infinite cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+@keyframes ringPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  70% { transform: scale(1.22); opacity: 0; }
+  100% { transform: scale(1.22); opacity: 0; }
+}
+
+@keyframes floatingPulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 12px 32px rgba(37, 211, 102, 0.65); }
+}
+
+@keyframes gentleWiggle {
+  0%, 85%, 100% { transform: rotate(0deg); }
+  88% { transform: rotate(-10deg); }
+  92% { transform: rotate(10deg); }
+  96% { transform: rotate(-6deg); }
+}
+
+@media (max-width: 640px) {
+  .wird-floating-whatsapp {
+    bottom: 18px;
+    right: 16px;
+    height: 48px;
+    padding: 0 14px 0 12px;
+    font-size: 13px;
+  }
+}
+
+

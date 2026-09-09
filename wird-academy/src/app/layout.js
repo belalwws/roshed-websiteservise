@@ -1,4 +1,5 @@
 import './globals.css';
+import FloatingWhatsApp from '../components/FloatingWhatsApp';
 
 export const metadata = {
   metadataBase: new URL('https://wirdacademy.com'),
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       </head>
       <body suppressHydrationWarning>
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );
