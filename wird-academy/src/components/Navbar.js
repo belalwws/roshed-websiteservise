@@ -27,11 +27,22 @@ export default function Navbar({ onOpenTrial }) {
         <div className="container">
           <div className="top-bar-inner">
             <div className="top-bar-left">
-              <span className="top-bar-badge">
-                <Award size={12} /> Al-Azhar Ijazah Certified Faculty
-              </span>
-              <span className="hide-tablet">✨ 1-on-1 Personalized Live Lessons</span>
-              <span className="hide-mobile">📊 3-Month Documented Reviews</span>
+              {/* Desktop announcement */}
+              <div className="top-bar-desktop-content hide-mobile">
+                <span className="top-bar-badge">
+                  <Award size={12} /> Al-Azhar Ijazah Certified Faculty
+                </span>
+                <span className="top-bar-text-main">
+                  Qualified Quran Teachers • Personalised 1-to-1 Lessons • Clear Progress Reports
+                </span>
+              </div>
+
+              {/* Mobile announcement */}
+              <div className="top-bar-mobile-content show-mobile-only">
+                <span className="top-bar-badge">
+                  <Award size={12} /> 1-to-1 Quran Lessons for Non-Arabic Speakers
+                </span>
+              </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
@@ -87,8 +98,8 @@ export default function Navbar({ onOpenTrial }) {
               <Link href="/#feedback" className="nav-item">
                 Reviews
               </Link>
-              <Link href="/about#faculty" className="nav-item">
-                Faculty
+              <Link href="/about#teachers" className="nav-item">
+                Teachers
               </Link>
               <Link href="/contact" className={`nav-item ${pathname === '/contact' ? 'active' : ''}`}>
                 Contact
@@ -177,19 +188,19 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>📚</span>
-                    <span>6 Academic Programs (البرامج والكورسات)</span>
+                    <span>5 Focused Programmes (البرامج والمناهج)</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
 
                 <Link 
-                  href="/#values" 
+                  href="/#approach" 
                   className="mobile-nav-item"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>⭐</span>
-                    <span>Core Values (القيم الجوهرية)</span>
+                    <span>Teaching Approach (منهجنا التعليمي)</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -201,7 +212,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🛡️</span>
-                    <span>Why Families Trust Us (ليه إحنا)</span>
+                    <span>Why Choose Us (لماذا أكاديمية ورد)</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -213,19 +224,19 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>📜</span>
-                    <span>Certificates &amp; Reviews (الشهادات والآراء)</span>
+                    <span>Reviews &amp; Experiences (آراء العائلات)</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
 
                 <Link 
-                  href="/about#faculty" 
+                  href="/about#teachers" 
                   className="mobile-nav-item"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🎓</span>
-                    <span>Certified Scholars (المعلمون المعتمدون)</span>
+                    <span>Meet Our Teachers (المعلمون المعتمدون)</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>

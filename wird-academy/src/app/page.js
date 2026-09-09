@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import TrialModal from '../components/TrialModal';
+import TrialBookingForm from '../components/TrialBookingForm';
 import FeedbackGallery from '../components/FeedbackGallery';
 import { 
   Sparkles, 
@@ -17,215 +18,191 @@ import {
   Users, 
   Target, 
   BarChart3, 
-  Ear, 
-  HeartHandshake, 
   GraduationCap, 
-  ChevronLeft,
-  ChevronRight, 
   ArrowRight,
   HelpCircle,
-  CalendarCheck
+  CalendarCheck,
+  Languages,
+  BookMarked,
+  Heart,
+  Compass
 } from 'lucide-react';
 
 export default function HomePage() {
-  const HERO_SLIDES = [
-    {
-      id: 'quran-tajweed',
-      tag: '📖 1. Quran & Tajweed',
-      tagAr: 'التلاوة الصحيحة وأحكام التجويد',
-      badge: 'Core Recitation • اقرأه كما أُنزِل',
-      title: 'Recite As It Was Revealed',
-      desc: 'Master Arabic phonetics and Tajweed with Al-Azhar scholars. Every letter from its exact articulation point (Makhraj), corrected live.',
-      image: '/assets/generated/slider-quran-tajweed.jpg',
-      pill1Title: 'Al-Azhar Ijazah',
-      pill1Sub: 'Sanad Connected Reciters',
-      pill2Title: 'Live 1-on-1 Correction',
-      pill2Sub: 'Sound by Sound Precision'
-    },
-    {
-      id: 'interactive-learning',
-      tag: '💻 2. Noor Al-Bayan',
-      tagAr: 'تأسيس القراءة بالصوت والصورة',
-      badge: 'Interactive Online Setup • نور البيان',
-      title: 'Sound by Sound, Word by Word',
-      desc: 'Child-friendly pedagogy, digital Quranic whiteboards, and Noor Al-Bayan phonetics designed for young kids and non-Arabic speaking families.',
-      image: '/assets/generated/slider-interactive-kids.jpg',
-      pill1Title: 'Child-Centric Pedagogy',
-      pill1Sub: 'Engaging & Patient Tutors',
-      pill2Title: 'Never a Group Slot',
-      pill2Sub: 'Private 1-on-1 Attention'
-    },
-    {
-      id: 'azhar-scholars',
-      tag: '🎓 3. Azhar Scholars',
-      tagAr: 'نخبة من علماء الأزهر المعتمدين',
-      badge: 'Authentic Sanad • إسناد متصل',
-      title: '5 Certified Al-Azhar Faculty',
-      desc: 'Learn directly with certified scholars holding chains of transmission (Sanad) in Hafs, Shu\'bah, Tuḥfat al-Aṭfāl, and Bukhari/Muslim.',
-      image: '/assets/generated/slider-azhar-sanad.jpg',
-      pill1Title: '5 Verified Scholars',
-      pill1Sub: 'Sharī\'ah & Quranic Sciences',
-      pill2Title: '3-Month Reviews',
-      pill2Sub: 'Documented Milestones'
-    }
-  ];
-
-  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
-  const [isHeroPaused, setIsHeroPaused] = useState(false);
-
-  // Auto-advance hero slides
-  useEffect(() => {
-    if (isHeroPaused) return;
-    const interval = setInterval(() => {
-      setActiveHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isHeroPaused, HERO_SLIDES.length]);
-
-  const handleHeroNext = () => {
-    setActiveHeroSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-  };
-
-  const handleHeroPrev = () => {
-    setActiveHeroSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  };
-
   const [isTrialOpen, setIsTrialOpen] = useState(false);
   const [activeCourseCategory, setActiveCourseCategory] = useState('all');
   const [activeFaq, setActiveFaq] = useState(null);
 
-  const courses = [
+  // 5 Focused Programmes requested
+  const programmes = [
     {
-      id: 'phonics',
+      id: 'reading-foundations',
       category: 'arabic',
-      badge: 'Foundations • التأسيس والقراءة',
-      title: '1. Arabic Phonics & Reading Foundations',
-      titleAr: 'تأسيس القراءة باللغة العربية ونور البيان',
-      desc: 'The starting point of every Quran journey — sound by sound, word by word, verse by verse. Every letter is applied directly to real Quranic words, with your pronunciation heard and corrected live in every lesson, until you read your very first page with clarity and confidence.',
-      tags: ['Noor Al-Bayan / Qaida', 'Letter Articulation (Makharij)', 'All Ages (Kids & Adults)']
+      badge: 'Level 1 • Foundations',
+      title: '1. Arabic Reading Foundations',
+      desc: 'Build a strong foundation from recognising Arabic letters to reading Quranic words and verses. Learners develop accurate pronunciation and reading fluency through personalised guidance and immediate live correction.',
+      tags: ['Noor Al-Bayan / Qaida', 'Letter Recognition & Makharij', 'Children, Teens & Adults']
     },
     {
-      id: 'tajweed',
+      id: 'recitation-tajweed',
       category: 'quran',
-      badge: 'Core Recitation • التلاوة والتجويد',
-      title: '2. Quran & Tajweed',
-      titleAr: 'تلاوة القرآن الكريم وأحكام التجويد',
-      desc: 'Recite the Quran as it was revealed — every letter from its precise articulation point, so a ح never slips into a ه. Nothing added, nothing dropped, with every rule explained clearly and your recitation corrected live in every lesson.',
-      tags: ['Precise Makharij', 'Practical Rules Application', 'Live 1-on-1 Correction']
+      badge: 'Core Recitation • أحكام التجويد',
+      title: '2. Quran Recitation & Tajweed',
+      desc: 'Develop clear, confident recitation through accurate makharij and applied Tajweed. Each lesson combines guided practice, live correction, and focused feedback, helping learners apply Tajweed rules accurately and recite with clarity and confidence.',
+      tags: ['Accurate Makharij', 'Applied Tajweed', 'Live 1-to-1 Correction']
     },
     {
-      id: 'hifz',
+      id: 'hifz-memorisation',
       category: 'quran',
-      badge: 'Memorization • الحفظ والمراجعة',
-      title: '3. Hifz — Quran Memorization',
-      titleAr: 'تحفيظ القرآن الكريم مع فهم المعاني',
-      desc: "A structured memorization plan, reviewed in every lesson and paced to each learner's level — with the meaning taught alongside, so you understand what you memorize, not just recite it, and every lesson taught by Ijazah-certified teachers. Because memorizing a page is easy; keeping it is the real work.",
-      tags: ['Systematic Retention', 'Meaning & Reflection', 'Ijazah Certified Scholars']
+      badge: 'Retention • الحفظ المتقن',
+      title: '3. Hifz & Quran Memorisation',
+      desc: 'Follow a structured memorisation plan tailored to the learner’s level and pace. New memorisation is supported by systematic revision and regular assessment to strengthen accuracy and long-term retention.',
+      tags: ['Personalised Hifz Plan', 'Systematic Revision', 'Progress Reviews']
     },
     {
       id: 'islamic-studies',
       category: 'islamic',
-      badge: 'Faith & Life • العلوم الشرعية',
+      badge: 'Faith & Morals • العلوم الشرعية',
       title: '4. Islamic Studies',
-      titleAr: 'العلوم الشرعية (عقيدة، فقه، سيرة، أذكار)',
-      desc: "Don't just learn about Islam — live it, with good character and a clear heart. From who Allah is and why we are here, to purification and prayer step by step, the life of the Prophet ﷺ and his Companions, the stories of the Prophets, and the du'as of daily life — all taught from authentic sources.",
-      tags: ['Aqeedah & Fiqh', 'Prophet Stories & Seerah', 'Daily Adhkar & Morals']
+      desc: 'Build sound Islamic knowledge through age-appropriate lessons grounded in authentic sources. Learners explore Aqeedah, Fiqh, Seerah, worship, daily adhkar, and Islamic manners in a clear, practical way.',
+      tags: ['Aqeedah & Fiqh', 'Seerah & Stories of the Prophets', 'Adhkar & Islamic Manners']
     },
     {
       id: 'quranic-arabic',
       category: 'arabic',
       badge: 'Comprehension • لغة القرآن',
       title: '5. Quranic Arabic',
-      titleAr: 'فهم معاني ومفردات القرآن الكريم',
-      desc: 'Start recognizing the meaning in what you recite — the core words of the Quran and the basics of its grammar: the first door into understanding the words of Allah directly without intermediary translations.',
-      tags: ['High-Frequency Vocabulary', 'Foundational Quranic Grammar', 'Direct Understanding']
-    },
-    {
-      id: 'spoken-arabic',
-      category: 'arabic',
-      badge: 'Fluency • المحادثة والتواصل',
-      title: '6. Spoken Arabic',
-      titleAr: 'المحادثة والتواصل باللغة العربية',
-      desc: 'Speak Arabic with confidence: everyday conversation, listening, reading, and writing for real-life situations — until holding a real conversation feels natural, not something you have to prepare for.',
-      tags: ['Daily Situations', 'Listening & Speaking', 'Real-world Fluency']
+      desc: 'Begin understanding the language of the Quran through high-frequency vocabulary, essential grammar, and familiar Quranic expressions. Learners gradually recognise words and structures within the verses they recite.',
+      tags: ['High-Frequency Quranic Vocabulary', 'Foundational Grammar', 'Guided Verse Understanding']
     }
   ];
 
-  const filteredCourses = activeCourseCategory === 'all' 
-    ? courses 
-    : courses.filter(c => c.category === activeCourseCategory);
+  const filteredProgrammes = activeCourseCategory === 'all' 
+    ? programmes 
+    : programmes.filter(p => p.category === activeCourseCategory);
 
-  const trustPillars = [
+  // 4 Principles Behind Every Wird Lesson (Teaching Approach)
+  const principles = [
     {
-      icon: <Award size={26} />,
-      title: '1. Al-Azhar Graduates, Ijazah-Certified',
-      titleAr: 'خريجو الأزهر الشريف وحملة الإجازات',
-      desc: 'Every teacher is an Al-Azhar graduate holding a certified Ijazah, and specialises in teaching Quran and Arabic to non-native speakers.'
+      number: '1',
+      title: 'Accuracy Before Speed',
+      quote: '“We would rather a learner read one page accurately than ten pages without mastery.”',
+      desc: 'We never rush learners through the Quran. Each letter is taught from its correct point of articulation (makhraj), helping preserve accurate pronunciation, meaning, and reverence.',
+      icon: <Target size={24} />
     },
     {
-      icon: <HeartHandshake size={26} />,
-      title: '2. Support That Makes It Stick',
-      titleAr: 'تثبيت مستمر ورعاية تعليمية',
-      desc: "We help each student memorize the new verses, make sure the day's lesson settles in before it ends, and revise earlier memorization in every session."
+      number: '2',
+      title: 'Progress Through Mastery',
+      quote: '“A level is complete when the learner demonstrates mastery—not simply when the lessons end.”',
+      desc: 'Learners do not move to a new book or surah prematurely. Progress happens only after the skills and milestones of the current stage have been securely mastered.',
+      icon: <BarChart3 size={24} />
     },
     {
-      icon: <Users size={26} />,
-      title: '3. One Student, One Teacher',
-      titleAr: 'معلم واحد لكل طالب (تعليم فردي كامل)',
-      desc: 'Every lesson belongs to your child alone, from start to finish, with mistakes corrected on the spot before they turn into habits.'
+      number: '3',
+      title: 'Consistency Over Intensity',
+      quote: '“A small portion sustained each week outlasts a burst of effort that quickly fades.”',
+      desc: 'Regular, focused 1-to-1 lessons support stronger long-term retention, steady confidence, and a lasting connection with the Quran.',
+      icon: <Clock size={24} />
     },
     {
-      icon: <Target size={26} />,
-      title: '4. A Plan That Moves With Your Child',
-      titleAr: 'خطة مخصصة تتطور مع مستوى طفلك',
-      desc: "The plan starts from where your child actually is, not from a fixed syllabus, and it shifts as they go: moving slower when something needs more time, and further ahead once it's solid."
+      number: '4',
+      title: 'Every Learner Is Known',
+      quote: '“Every learner is seen, understood, and supported.”',
+      desc: 'Each learner is paired with a dedicated teacher who comes to understand their starting point, learning pace, strengths, and areas needing further practice.',
+      icon: <Users size={24} />
+    }
+  ];
+
+  // 7 Commitments Behind Every Wird Learning Journey
+  const commitments = [
+    {
+      number: '1',
+      title: 'Al-Azhar Graduates & Ijazah Holders',
+      desc: 'Our teaching team brings together Al-Azhar graduates and Ijazah holders with experience teaching Quran and Arabic to non-Arabic speakers.',
+      icon: <Award size={24} />
     },
     {
-      icon: <BarChart3 size={26} />,
-      title: '5. Clear Milestones, Documented Progress',
-      titleAr: 'تقارير دورية وخطة ربع سنوية',
-      desc: 'After the trial lesson you receive a written level report and a three-month plan, then a short report after every session. No student moves up a level without passing an assessment first.'
+      number: '2',
+      title: 'One Learner, One Teacher',
+      desc: 'Every lesson is fully 1-to-1, giving each learner focused attention, immediate correction, and teaching adapted to their individual needs.',
+      icon: <Users size={24} />
     },
     {
-      icon: <CalendarCheck size={26} />,
-      title: '6. The Bigger Picture, Every Three Months',
-      titleAr: 'تقييم شامل كل ثلاثة أشهر',
-      desc: "Every three months you receive a full review: what the student has achieved, the strengths they've built along the way, the points that still need work, and the plan for the three months ahead."
+      number: '3',
+      title: 'A Plan Built Around the Learner',
+      desc: 'Every learner begins with an assessment and a personalised plan that adapts to their pace, progress, and areas requiring further support.',
+      icon: <Compass size={24} />
     },
     {
-      icon: <Ear size={26} />,
-      title: '7. Progress You Can Hear',
-      titleAr: 'تطور تسمعه في التلاوة الحقيقية',
-      desc: "You won't need a report to know it's working; you'll hear it in the recitation itself with clear letter articulation and Tajweed mastery."
+      number: '4',
+      title: 'Review That Strengthens Retention',
+      desc: 'Previous learning is reviewed regularly before new material is introduced, helping knowledge and skills become more accurate, secure, and lasting.',
+      icon: <ShieldCheck size={24} />
     },
     {
-      icon: <Sparkles size={26} />,
-      title: '8. See It for Yourself',
-      titleAr: 'حصة تجريبية مجانية لتقييم المستوى',
-      desc: "Your first lesson is free, at a time that suits your timezone. You'll leave it knowing exactly where your child stands and what the next three months look like."
+      number: '5',
+      title: 'Clear Milestones & Documented Progress',
+      desc: 'After the trial, each learner receives a level summary and a three-month plan. Progress is then tracked through regular reports, milestone assessments, and a full review every three months.',
+      icon: <BarChart3 size={24} />
+    },
+    {
+      number: '6',
+      title: 'Progress You Can See and Hear',
+      desc: 'Progress becomes visible in stronger retention and growing independence—and audible in clearer articulation, more accurate Tajweed, and greater confidence in recitation.',
+      icon: <Sparkles size={24} />
+    },
+    {
+      number: '7',
+      title: 'Flexible Learning Across Time Zones',
+      desc: 'Lessons are scheduled around families in different time zones, with consistent weekly times that support a steady and sustainable learning routine.',
+      icon: <Clock size={24} />
+    }
+  ];
+
+  // 4-Step Journey
+  const steps = [
+    {
+      step: '1',
+      title: 'Book Your Free Trial',
+      desc: "Complete our short form with the learner's age, goals, and current experience, or contact us directly on WhatsApp to arrange a suitable time."
+    },
+    {
+      step: '2',
+      title: 'Join a Live 1-to-1 Assessment',
+      desc: "A qualified teacher will identify the learner's starting point through level-appropriate activities and a focused sample lesson."
+    },
+    {
+      step: '3',
+      title: 'Receive Your Personalised Plan',
+      desc: 'After the trial, receive a clear level summary and a tailored three-month learning plan, then choose a consistent weekly schedule that suits your time zone.'
+    },
+    {
+      step: '4',
+      title: 'Begin Learning & Track Progress',
+      desc: "Start personalised 1-to-1 lessons with regular review, clear milestones, and progress updates. A full review every three months helps shape the learner's next stage."
     }
   ];
 
   const faqs = [
     {
       q: 'How does the free trial lesson and level assessment work?',
-      a: "Your first lesson is 100% complimentary and conducted 1-on-1 with a certified Al-Azhar scholar. The teacher assesses your or your child's current pronunciation, Makharij, and reading level, followed by a written level report and customized 3-month roadmap."
+      a: "Your first lesson is 100% complimentary and conducted 1-on-1 with a qualified Al-Azhar teacher. The instructor assesses the learner's current pronunciation, Makharij, and reading starting point, followed by a level summary and a tailored 3-month plan."
     },
     {
       q: 'What makes Wird Academy different from large online platforms?',
-      a: 'We operate under our core philosophy: "Read it as it was revealed." We prioritize accuracy before speed, every session is private (1-on-1), every teacher is an Al-Azhar graduate with an authentic Ijazah, and progress is earned through verified assessments, not just elapsed hours.'
+      a: 'We operate under our core philosophy: "Read the Quran as It Was Revealed." We prioritize accuracy before speed, every session is strictly 1-to-1, every teacher is an Al-Azhar graduate with an authentic Ijazah, and progress is earned through verified mastery rather than just elapsed hours.'
     },
     {
       q: 'What age groups do you teach?',
-      a: 'We teach all age groups — starting from young children (ages 4–7) with playful Noor Al-Bayan phonetics, to older kids, teenagers, and adults beginning their Quran journey or seeking advanced Ijazah certification.'
+      a: 'We teach all age groups—from young children (ages 4–7) with engaging phonetics and foundational reading, to older children (8–12), teenagers (13–17), and adults seeking foundational Arabic reading, Tajweed refinement, or structured memorisation.'
     },
     {
       q: 'How are the teachers qualified?',
-      a: 'All our instructors are graduates of prestigious faculties at Al-Azhar University (Islamic Sharī\'ah, Quranic Sciences, English Sections) holding verified Ijazahs in Hafs and multiple Qirā\'āt, with extensive training in teaching non-native speakers in English.'
+      a: 'All our instructors are graduates of prestigious faculties at Al-Azhar University (Islamic Sharī\'ah, Quranic Sciences, and English Sections) holding authentic Ijazahs with Sanad, trained in teaching non-Arabic speakers with clear bilingual communication.'
     },
     {
       q: 'How do parents receive feedback and monitor progress?',
-      a: 'Parents receive a written follow-up summary after every single lesson detailing what was covered, along with enjoyable revision activities. Additionally, a comprehensive quarterly review is conducted every 3 months before advancing to the next level.'
+      a: 'Parents receive regular updates after lessons detailing what was covered and areas of practice, along with milestone assessments and a full review every three months to ensure continuous, documented progress.'
     }
   ];
 
@@ -239,26 +216,27 @@ export default function HomePage() {
           <div className="hero-grid">
             {/* Left Content */}
             <div className="hero-content">
+              {/* Two small badges above the title */}
               <div className="hero-badges">
                 <span className="hero-badge-tag">
-                  <Award size={13} /> Al-Azhar Graduate Faculty
+                  <Award size={13} /> Al-Azhar Graduates &amp; Ijazah Holders
                 </span>
                 <span className="hero-badge-tag">
-                  <Sparkles size={13} /> 1-on-1 Private Instruction
+                  <Sparkles size={13} /> Personalised 1-to-1 Live Lessons
                 </span>
               </div>
 
               <div>
                 <h1 className="hero-headline">
-                  Master Quran Recitation, Tajweed &amp; Arabic <span className="gold-gradient-text">As It Was Revealed</span>
+                  Read the Quran <span className="gold-gradient-text">as It Was Revealed</span>
                 </h1>
-                <span className="hero-slogan-arabic">
-                  اقرأه كما أُنزِل — أكاديمية ورد للقرآن والعلوم الشرعية
-                </span>
+                <div className="hero-subheadline-custom">
+                  Build Confidence in Quran Recitation, Tajweed, and Memorisation
+                </div>
               </div>
 
               <p className="hero-desc">
-                Wird Academy exists so that every Muslim who doesn’t speak Arabic can read the Book of Allah properly — not approximately, not from transliteration, but with authentic Tajweed guided by certified Al-Azhar scholars.
+                Whether beginning with the Arabic alphabet or refining Quran recitation, every learner follows a personalised 1-to-1 path—starting exactly where they are and progressing at the right pace.
               </p>
 
               <div className="hero-actions">
@@ -272,7 +250,7 @@ export default function HomePage() {
                 </button>
 
                 <a 
-                  href="https://wa.me/201061858535?text=Hello%20Wird%20Academy,%20I%20would%20like%20to%20inquire%20about%20classes."
+                  href="https://wa.me/201061858535?text=Hello%20Wird%20Academy,%20I%20would%20like%20to%20inquire%20about%20a%20free%20trial%20session."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="button button-whatsapp"
@@ -291,7 +269,7 @@ export default function HomePage() {
                 </div>
                 <div className="hero-trust-item">
                   <CheckCircle2 size={17} className="hero-trust-icon" />
-                  <span>One Student, One Teacher</span>
+                  <span>One Learner, One Teacher</span>
                 </div>
                 <div className="hero-trust-item">
                   <CheckCircle2 size={17} className="hero-trust-icon" />
@@ -304,97 +282,33 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Visual: Interactive Hero Visual Slider */}
-            <div 
-              className="hero-visual"
-              onMouseEnter={() => setIsHeroPaused(true)}
-              onMouseLeave={() => setIsHeroPaused(false)}
-            >
-              <div className="hero-slider-container">
-                {/* Main Slide Frame */}
-                <div className="hero-slide-frame">
+            {/* Right Visual: Static Authentic Educational Image Card */}
+            <div className="hero-visual">
+              <div className="hero-static-visual-card">
+                <div className="hero-static-img-frame">
                   <img 
-                    key={HERO_SLIDES[activeHeroSlide].id}
-                    src={HERO_SLIDES[activeHeroSlide].image} 
-                    alt={HERO_SLIDES[activeHeroSlide].title} 
-                    className="hero-slide-img"
-                    width={420}
-                    height={420}
+                    src="/assets/generated/live-1to1-learning.jpg" 
+                    alt="Live 1-to-1 Online Quran Learning Session at Wird Academy" 
+                    className="hero-static-photo"
+                    width={520}
+                    height={390}
+                    priority="true"
                   />
-
-                  {/* Gradient Overlay with Live Slide Info */}
-                  <div className="hero-slide-overlay">
-                    <span className="hero-slide-tag">
-                      {HERO_SLIDES[activeHeroSlide].badge}
-                    </span>
-                    <h3 className="hero-slide-title">
-                      {HERO_SLIDES[activeHeroSlide].title}
-                    </h3>
-                    <p className="hero-slide-desc">
-                      {HERO_SLIDES[activeHeroSlide].desc}
-                    </p>
-                  </div>
-
-                  {/* Navigation Arrows */}
-                  <button 
-                    onClick={handleHeroPrev}
-                    className="hero-slider-nav-btn hero-slider-nav-prev"
-                    aria-label="Previous Slide"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-
-                  <button 
-                    onClick={handleHeroNext}
-                    className="hero-slider-nav-btn hero-slider-nav-next"
-                    aria-label="Next Slide"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-
-                {/* 3 Clickable Slide Tabs */}
-                <div className="hero-slider-pills">
-                  {HERO_SLIDES.map((slide, idx) => (
-                    <button
-                      key={slide.id}
-                      onClick={() => setActiveHeroSlide(idx)}
-                      className={`hero-slider-pill-btn ${activeHeroSlide === idx ? 'active' : ''}`}
-                    >
-                      <span>{slide.tag}</span>
-                      <span className="hero-slider-pill-sub">{slide.tagAr}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating Dynamic Badges */}
-              <div className="hero-floating-badges-mobile">
-                <div className="floating-card floating-card-1">
-                  <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'var(--gold-100)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-800)', flexShrink: 0 }}>
-                    <Award size={18} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>
-                      {HERO_SLIDES[activeHeroSlide].pill1Title}
-                    </div>
-                    <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
-                      {HERO_SLIDES[activeHeroSlide].pill1Sub}
-                    </div>
+                  
+                  {/* Subtle Elegant Floating Pill */}
+                  <div className="hero-photo-top-badge">
+                    <span className="live-pulse-dot" />
+                    <span>Live 1-to-1 Online Learning</span>
                   </div>
                 </div>
 
-                <div className="floating-card floating-card-2">
-                  <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(37, 211, 102, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#25d366', flexShrink: 0 }}>
-                    <Users size={18} />
+                {/* Caption below the image as requested */}
+                <div className="hero-static-caption-bar">
+                  <div className="caption-text-main">
+                    Live 1-to-1 Online Learning
                   </div>
-                  <div>
-                    <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--primary-900)' }}>
-                      {HERO_SLIDES[activeHeroSlide].pill2Title}
-                    </div>
-                    <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>
-                      {HERO_SLIDES[activeHeroSlide].pill2Sub}
-                    </div>
+                  <div className="caption-text-sub">
+                    Direct scholarly mentoring with qualified Al-Azhar teachers
                   </div>
                 </div>
               </div>
@@ -403,7 +317,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Counter Banner */}
+      {/* Blue Ribbon / Stats Strip (الشريط الازرق) */}
       <section className="stats-banner">
         <div className="container">
           <div className="stats-grid">
@@ -412,8 +326,8 @@ export default function HomePage() {
                 <Users size={22} />
               </div>
               <div>
-                <div className="stat-number">1-on-1</div>
-                <div className="stat-label">Private Live Teaching</div>
+                <div className="stat-number">1-to-1</div>
+                <div className="stat-label">Personalised Live Lessons</div>
               </div>
             </div>
 
@@ -423,7 +337,7 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="stat-number">Al-Azhar</div>
-                <div className="stat-label">Ijazah-Certified Scholars</div>
+                <div className="stat-label">Graduates &amp; Ijazah Holders</div>
               </div>
             </div>
 
@@ -432,8 +346,8 @@ export default function HomePage() {
                 <BarChart3 size={22} />
               </div>
               <div>
-                <div className="stat-number">3 Months</div>
-                <div className="stat-label">Full Milestone Reviews</div>
+                <div className="stat-number">3-Month Plan</div>
+                <div className="stat-label">Clear Milestones &amp; Progress Reviews</div>
               </div>
             </div>
 
@@ -443,157 +357,80 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="stat-number">All Ages</div>
-                <div className="stat-label">Children, Youth &amp; Adults</div>
+                <div className="stat-label">Children, Teens &amp; Adults</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section id="values" style={{ padding: '80px 0', background: '#ffffff' }}>
+      {/* Teaching Approach: The Principles Behind Every Wird Lesson */}
+      <section id="approach" style={{ padding: '80px 0', background: '#ffffff' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Our Educational Philosophy</div>
+            <div className="section-tag">OUR TEACHING APPROACH</div>
             <h2 className="section-title">
-              Our Four <span className="navy-gradient-text">Core Pillars &amp; Values</span>
+              The Principles Behind Every <span className="navy-gradient-text">Wird Lesson</span>
             </h2>
             <p className="section-subtitle">
-              We measure our work by one thing: how our students recite. Here is how we uphold that standard every single day.
+              We measure our work by how our learners recite and understand the Quran. Here is the educational foundation behind every session.
             </p>
           </div>
 
           <div className="grid-2">
-            <div className="value-card">
-              <div className="value-icon">
-                <Target size={24} />
+            {principles.map((p) => (
+              <div key={p.number} className="value-card">
+                <div className="value-icon">
+                  {p.icon}
+                </div>
+                <h3 className="value-title">{p.number}. {p.title}</h3>
+                <div className="value-quote">
+                  {p.quote}
+                </div>
+                <p className="value-desc">
+                  {p.desc}
+                </p>
               </div>
-              <h3 className="value-title">1. Accuracy Before Speed</h3>
-              <div className="value-quote">
-                "We would rather a student read one page correctly than ten pages approximately."
-              </div>
-              <p className="value-desc">
-                We never rush students through the Quran. Every letter must be articulated from its exact anatomical point (Makhraj) so that meaning and reverence are preserved.
-              </p>
-            </div>
-
-            <div className="value-card">
-              <div className="value-icon">
-                <BarChart3 size={24} />
-              </div>
-              <h3 className="value-title">2. Progress That Is Earned</h3>
-              <div className="value-quote">
-                "A level ends when the student passes its assessment, not when its lessons run out."
-              </div>
-              <p className="value-desc">
-                No student is moved to a new book or Surah prematurely. Advancement is celebrated only when the learner has genuinely mastered the current milestone.
-              </p>
-            </div>
-
-            <div className="value-card">
-              <div className="value-icon">
-                <Clock size={24} />
-              </div>
-              <h3 className="value-title">3. Consistency Over Intensity</h3>
-              <div className="value-quote">
-                "A small portion held to every week outlasts a burst of effort that fades."
-              </div>
-              <p className="value-desc">
-                Consistent, focused 1-on-1 sessions held weekly produce unbreakable lifelong retention, steady confidence, and genuine love for the Quran.
-              </p>
-            </div>
-
-            <div className="value-card">
-              <div className="value-icon">
-                <Users size={24} />
-              </div>
-              <h3 className="value-title">4. Every Student Is Known</h3>
-              <div className="value-quote">
-                "No one here is a slot on a schedule."
-              </div>
-              <p className="value-desc">
-                Your child is paired with a dedicated Azhari teacher who understands their temperament, pacing, strengths, and areas of revision intimately.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Academic Programs Section */}
+      {/* Curriculum & Programmes Section */}
       <section id="courses" style={{ padding: '80px 0', background: 'var(--bg-soft)', borderTop: '1px solid var(--border-light)' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Curriculum &amp; Programs</div>
+            <div className="section-tag">CURRICULUM &amp; PROGRAMMES</div>
             <h2 className="section-title">
-              Our 6 Specialized <span className="navy-gradient-text">Academic Programs</span>
+              Five Focused Programmes for <span className="navy-gradient-text">Every Stage of Learning</span>
             </h2>
             <p className="section-subtitle">
-              Structured courses taught in fluent English and Arabic, tailored for non-native speakers of all ages.
+              Personalised 1-to-1 learning in Quran, Quranic Arabic, and Islamic Studies—designed for non-Arabic speakers of all ages.
             </p>
 
             {/* Category Filter */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '24px', flexWrap: 'wrap' }}>
               <button 
                 onClick={() => setActiveCourseCategory('all')}
-                style={{
-                  padding: '7px 16px',
-                  borderRadius: '999px',
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: activeCourseCategory === 'all' ? 'var(--primary-900)' : '#ffffff',
-                  color: activeCourseCategory === 'all' ? '#ffffff' : 'var(--text-body)',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
+                className={`filter-pill-btn ${activeCourseCategory === 'all' ? 'is-active' : ''}`}
               >
-                All Programs
+                All 5 Programmes
               </button>
               <button 
                 onClick={() => setActiveCourseCategory('quran')}
-                style={{
-                  padding: '7px 16px',
-                  borderRadius: '999px',
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: activeCourseCategory === 'quran' ? 'var(--primary-900)' : '#ffffff',
-                  color: activeCourseCategory === 'quran' ? '#ffffff' : 'var(--text-body)',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
+                className={`filter-pill-btn ${activeCourseCategory === 'quran' ? 'is-active' : ''}`}
               >
                 Quran &amp; Tajweed
               </button>
               <button 
                 onClick={() => setActiveCourseCategory('arabic')}
-                style={{
-                  padding: '7px 16px',
-                  borderRadius: '999px',
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: activeCourseCategory === 'arabic' ? 'var(--primary-900)' : '#ffffff',
-                  color: activeCourseCategory === 'arabic' ? '#ffffff' : 'var(--text-body)',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
+                className={`filter-pill-btn ${activeCourseCategory === 'arabic' ? 'is-active' : ''}`}
               >
-                Arabic Language
+                Arabic Foundations
               </button>
               <button 
                 onClick={() => setActiveCourseCategory('islamic')}
-                style={{
-                  padding: '7px 16px',
-                  borderRadius: '999px',
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  border: 'none',
-                  cursor: 'pointer',
-                  background: activeCourseCategory === 'islamic' ? 'var(--primary-900)' : '#ffffff',
-                  color: activeCourseCategory === 'islamic' ? '#ffffff' : 'var(--text-body)',
-                  boxShadow: 'var(--shadow-sm)'
-                }}
+                className={`filter-pill-btn ${activeCourseCategory === 'islamic' ? 'is-active' : ''}`}
               >
                 Islamic Studies
               </button>
@@ -601,15 +438,14 @@ export default function HomePage() {
           </div>
 
           <div className="grid-3">
-            {filteredCourses.map((course) => (
-              <div key={course.id} className="course-card">
-                <div className="course-badge">{course.badge}</div>
-                <h3 className="course-title">{course.title}</h3>
-                <div className="course-title-ar">{course.titleAr}</div>
-                <p className="course-desc">{course.desc}</p>
+            {filteredProgrammes.map((prog) => (
+              <div key={prog.id} className="course-card">
+                <div className="course-badge">{prog.badge}</div>
+                <h3 className="course-title">{prog.title}</h3>
+                <p className="course-desc">{prog.desc}</p>
 
                 <div className="course-meta-tags">
-                  {course.tags.map((tag, idx) => (
+                  {prog.tags.map((tag, idx) => (
                     <span key={idx} className="course-meta-tag">
                       <CheckCircle2 size={12} color="var(--gold-600)" />
                       <span>{tag}</span>
@@ -620,10 +456,10 @@ export default function HomePage() {
                 <button 
                   onClick={() => setIsTrialOpen(true)}
                   className="button button-gold full"
-                  style={{ minHeight: '40px', fontSize: '13px' }}
+                  style={{ minHeight: '40px', fontSize: '13px', marginTop: 'auto' }}
                 >
                   <Sparkles size={14} />
-                  <span>Book Free Trial for This Course</span>
+                  <span>Book Free Trial for This Programme</span>
                 </button>
               </div>
             ))}
@@ -631,328 +467,113 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Families Trust Us (8 Pillars from form) */}
+      {/* Why Choose Us: Seven Commitments Behind Every Wird Learning Journey */}
       <section id="why-us" style={{ padding: '80px 0', background: '#ffffff' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Why Choose Us</div>
+            <div className="section-tag">WHY WIRD ACADEMY</div>
             <h2 className="section-title">
-              Why Discerning Families <span className="navy-gradient-text">Trust Wird Academy</span>
+              Seven Commitments Behind Every <span className="navy-gradient-text">Wird Learning Journey</span>
             </h2>
             <p className="section-subtitle">
-              8 concrete commitments that make your learning journey authentic, structured, and enjoyable.
+              Qualified teachers, personalised 1-to-1 support, and clear progress tracking—from the first assessment onwards.
             </p>
           </div>
 
-          <div className="grid-4">
-            {trustPillars.map((pillar, idx) => (
-              <div key={idx} className="value-card" style={{ padding: '22px 18px' }}>
+          <div className="grid-4" style={{ marginBottom: '44px' }}>
+            {commitments.map((c) => (
+              <div key={c.number} className="value-card" style={{ padding: '22px 18px' }}>
                 <div className="value-icon" style={{ width: '42px', height: '42px', marginBottom: '14px' }}>
-                  {pillar.icon}
+                  {c.icon}
                 </div>
-                <h4 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '4px', lineHeight: 1.3 }}>
-                  {pillar.title}
+                <h4 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '8px', lineHeight: 1.3 }}>
+                  {c.number}. {c.title}
                 </h4>
-                <div style={{ fontSize: '12px', color: 'var(--gold-800)', fontFamily: 'Amiri, serif', marginBottom: '8px', fontWeight: 700 }}>
-                  {pillar.titleAr}
-                </div>
                 <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
-                  {pillar.desc}
+                  {c.desc}
                 </p>
               </div>
             ))}
           </div>
+
+          {/* START WITH A FREE TRIAL Callout */}
+          <div className="start-trial-banner">
+            <div className="start-trial-content">
+              <span className="start-trial-tag">START WITH A FREE TRIAL</span>
+              <h3 className="start-trial-title">
+                Experience Personalised 1-to-1 Learning Today
+              </h3>
+              <p className="start-trial-desc">
+                Your first lesson includes a level assessment, a short guided lesson, and clear next steps based on the learner’s individual needs.
+              </p>
+            </div>
+            <div className="start-trial-cta">
+              <button 
+                onClick={() => setIsTrialOpen(true)}
+                className="button button-gold"
+                style={{ padding: '14px 28px', fontSize: '15px' }}
+              >
+                <Sparkles size={16} />
+                <span>Book a Free Trial</span>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 4-Step Registration Journey (From Form) */}
+      {/* How It Works: Your Wird Journey in Four Simple Steps */}
       <section style={{ padding: '80px 0 60px', background: 'var(--bg-cream)', borderTop: '1px solid var(--border-light)' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Simple 4-Step Journey</div>
+            <div className="section-tag">HOW IT WORKS</div>
             <h2 className="section-title">
-              How to Begin Your <span className="navy-gradient-text">Learning Journey</span>
+              Your Wird Journey in <span className="navy-gradient-text">Four Simple Steps</span>
             </h2>
             <p className="section-subtitle">
-              From your initial assessment request to earning verified Quranic milestones.
+              From your first enquiry to a personalised plan and measurable progress.
             </p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '50px' }}>
-            <div style={{ background: '#ffffff', borderRadius: '16px', padding: '24px 20px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'var(--gold-100)', color: 'var(--gold-900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, marginBottom: '14px' }}>
-                1
-              </div>
-              <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '6px' }}>
-                Request Free Trial
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
-                Submit our short assessment form with your student name, age, and recitation level, or reach out directly on WhatsApp.
-              </p>
-            </div>
-
-            <div style={{ background: '#ffffff', borderRadius: '16px', padding: '24px 20px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'var(--gold-100)', color: 'var(--gold-900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, marginBottom: '14px' }}>
-                2
-              </div>
-              <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '6px' }}>
-                Live Level Assessment
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
-                Meet your dedicated Al-Azhar teacher 1-on-1 at a time that suits your timezone to assess letter articulation and pace.
-              </p>
-            </div>
-
-            <div style={{ background: '#ffffff', borderRadius: '16px', padding: '24px 20px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'var(--gold-100)', color: 'var(--gold-900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, marginBottom: '14px' }}>
-                3
-              </div>
-              <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '6px' }}>
-                3-Month Custom Plan
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
-                Receive a written level assessment report, a structured 3-month roadmap, and choose your preferred weekly schedule.
-              </p>
-            </div>
-
-            <div style={{ background: '#ffffff', borderRadius: '16px', padding: '24px 20px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'var(--gold-100)', color: 'var(--gold-900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, marginBottom: '14px' }}>
-                4
-              </div>
-              <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '6px' }}>
-                Earned Progress Reviews
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
-                Enjoy reports after every lesson and full quarterly milestone assessments. Progress you can clearly hear in the recitation.
-              </p>
-            </div>
-          </div>
-
-          {/* Inline Trial Booking Card (Requested explicitly in client intake form) */}
-          <div 
-            id="book-trial-section"
-            style={{
-              background: 'linear-gradient(135deg, #081b33 0%, #0d284d 100%)',
-              borderRadius: '24px',
-              padding: '40px 32px',
-              color: '#ffffff',
-              border: '2px solid var(--border-gold)',
-              boxShadow: 'var(--shadow-lg)'
-            }}
-          >
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '36px', alignItems: 'center' }}>
-              <div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(201, 154, 69, 0.25)', color: 'var(--gold-300)', padding: '4px 14px', borderRadius: '999px', fontSize: '12px', fontWeight: 800, marginBottom: '12px' }}>
-                  <Sparkles size={13} /> 100% Complimentary Trial Assessment
+            {steps.map((st) => (
+              <div key={st.step} style={{ background: '#ffffff', borderRadius: '16px', padding: '24px 20px', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-sm)' }}>
+                <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: 'var(--gold-100)', color: 'var(--gold-900)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, marginBottom: '14px' }}>
+                  {st.step}
                 </div>
-                <h3 style={{ fontSize: 'clamp(24px, 2.5vw, 34px)', fontWeight: 800, lineHeight: 1.25, marginBottom: '12px' }}>
-                  Book Your Free 1-on-1 Trial Session
-                </h3>
-                <p style={{ fontSize: '14.5px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '20px' }}>
-                  Fill out the form with your details to receive an authentic recitation diagnostic with our Al-Azhar certified scholars. We match you with the ideal teacher for your timezone.
+                <h4 style={{ fontSize: '17px', fontWeight: 800, color: 'var(--primary-900)', marginBottom: '8px' }}>
+                  {st.title}
+                </h4>
+                <p style={{ fontSize: '13px', color: 'var(--text-body)', lineHeight: 1.6 }}>
+                  {st.desc}
                 </p>
-
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: 'var(--gold-200)' }}>
-                    <CheckCircle2 size={16} color="var(--gold-400)" />
-                    <span>Live Makharij &amp; Recitation Level Evaluation</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: 'var(--gold-200)' }}>
-                    <CheckCircle2 size={16} color="var(--gold-400)" />
-                    <span>Tailored 3-Month Learning Roadmap</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '13.5px', color: 'var(--gold-200)' }}>
-                    <CheckCircle2 size={16} color="var(--gold-400)" />
-                    <span>No Commitment • 100% Free Consultation</span>
-                  </div>
-                </div>
               </div>
+            ))}
+          </div>
 
-              {/* Form Box */}
-              <div style={{ background: '#ffffff', borderRadius: '18px', padding: '26px 22px', color: 'var(--primary-900)', boxShadow: 'var(--shadow-md)' }}>
-                <form 
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const target = e.target;
-                    const fName = target.firstName.value;
-                    const lName = target.lastName.value;
-                    const age = target.age.value;
-                    const course = target.course.value;
-                    const level = target.level.value;
-                    const phone = target.phone.value;
-                    const country = target.country.value;
-
-                    const msg = `*New Free Trial Booking - Wird Academy*%0A%0A` +
-                      `*Student Name:* ${encodeURIComponent(fName + ' ' + lName)}%0A` +
-                      `*Student Age:* ${encodeURIComponent(age)}%0A` +
-                      `*Program:* ${encodeURIComponent(course)}%0A` +
-                      `*Current Level & Notes:* ${encodeURIComponent(level || 'Beginner assessment')}%0A` +
-                      `*Country / Timezone:* ${encodeURIComponent(country || 'Global')}%0A` +
-                      `*WhatsApp:* ${encodeURIComponent(phone)}%0A`;
-
-                    window.open(`https://wa.me/201061858535?text=${msg}`, '_blank');
-                  }}
-                  style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
-                >
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                        First Name (الاسم الأول) *
-                      </label>
-                      <input 
-                        type="text" 
-                        name="firstName" 
-                        required 
-                        placeholder="e.g. Zayd" 
-                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
-                      />
-                    </div>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                        Last Name (الاسم الثاني) *
-                      </label>
-                      <input 
-                        type="text" 
-                        name="lastName" 
-                        required 
-                        placeholder="e.g. Ali" 
-                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
-                      />
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                        Student Age (عمر الطالب) *
-                      </label>
-                      <select 
-                        name="age" 
-                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12.5px' }}
-                      >
-                        <option value="Young Kids (4 - 7 Years)">Young Kids (4 - 7 Years)</option>
-                        <option value="Kids (8 - 12 Years)">Kids (8 - 12 Years)</option>
-                        <option value="Teens (13 - 17 Years)">Teens (13 - 17 Years)</option>
-                        <option value="Adults (18+ Years)">Adults (18+ Years)</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                        Program of Interest *
-                      </label>
-                      <select 
-                        name="course" 
-                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12.5px' }}
-                      >
-                        <option value="Arabic Phonics & Noor Al-Bayan">1. Arabic Phonics & Noor Al-Bayan</option>
-                        <option value="Quran & Tajweed">2. Quran & Tajweed</option>
-                        <option value="Hifz — Quran Memorization">3. Hifz — Quran Memorization</option>
-                        <option value="Islamic Studies">4. Islamic Studies</option>
-                        <option value="Quranic Arabic">5. Quranic Arabic</option>
-                        <option value="Spoken Arabic">6. Spoken Arabic</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                      Current Recitation Level &amp; Goals (مستوى الطالب) *
-                    </label>
-                    <textarea 
-                      name="level" 
-                      rows={2} 
-                      required 
-                      placeholder="e.g. Knows Arabic letters / Beginner in Tajweed / Needs recitation correction..." 
-                      style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '12.5px', resize: 'none' }}
-                    />
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                        WhatsApp Number *
-                      </label>
-                      <input 
-                        type="tel" 
-                        name="phone" 
-                        required 
-                        placeholder="+1 (555) 000-0000" 
-                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '11.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '3px' }}>
-                        Country / Timezone *
-                      </label>
-                      <input 
-                        type="text" 
-                        name="country" 
-                        placeholder="e.g. USA (EST) - Evenings" 
-                        style={{ width: '100%', padding: '8px 10px', borderRadius: '8px', border: '1px solid #cbd5e1', fontSize: '13px' }}
-                      />
-                    </div>
-                  </div>
-
-                  <button 
-                    type="submit" 
-                    className="button button-gold full"
-                    style={{ minHeight: '42px', fontSize: '13.5px', marginTop: '4px' }}
-                  >
-                    <Sparkles size={15} />
-                    <span>Submit &amp; Schedule via WhatsApp</span>
-                  </button>
-                </form>
-              </div>
-            </div>
+          {/* Inline Dedicated Trial Assessment Form */}
+          <div id="book-trial-section" style={{ marginTop: '20px' }}>
+            <TrialBookingForm />
           </div>
         </div>
       </section>
 
-      {/* Verified Parent Reviews & Student Achievement Certificates */}
+      {/* Verified WhatsApp Reviews Gallery with Lightbox */}
       <FeedbackGallery onOpenTrial={() => setIsTrialOpen(true)} />
-
-      {/* Faculty Preview Strip */}
-      <section style={{ padding: '70px 0', background: '#ffffff' }}>
-        <div className="container">
-          <div style={{ background: 'linear-gradient(135deg, #081b33 0%, #194682 100%)', borderRadius: '24px', padding: '40px 32px', color: '#ffffff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '24px' }}>
-            <div style={{ maxWidth: '600px' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(201, 154, 69, 0.25)', color: 'var(--gold-300)', padding: '3px 12px', borderRadius: '999px', fontSize: '12px', fontWeight: 800, marginBottom: '10px' }}>
-                <GraduationCap size={14} /> Certified Al-Azhar Scholars
-              </div>
-              <h3 style={{ fontSize: '26px', fontWeight: 800, lineHeight: 1.25, marginBottom: '8px' }}>
-                Learn With Verified Ijazah Holders &amp; Azhari Graduates
-              </h3>
-              <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.6 }}>
-                Meet our 5 esteemed scholars holding authentic chains of transmission (Sanad) in Hafs, Shu'bah, and Ten Qirā'āt, with specialized training in Noor Al-Bayan and inclusive education.
-              </p>
-            </div>
-
-            <div>
-              <Link href="/about#faculty" className="button button-gold">
-                <span>Meet All Our Faculty Members</span>
-                <ArrowRight size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section style={{ padding: '80px 0', background: 'var(--bg-soft)', borderTop: '1px solid var(--border-light)' }}>
-        <div className="container" style={{ maxWidth: '840px' }}>
+        <div className="container">
           <div className="section-header">
-            <div className="section-tag">Frequently Asked Questions</div>
+            <div className="section-tag">Common Questions</div>
             <h2 className="section-title">
-              Common Questions <span className="navy-gradient-text">Answered</span>
+              Frequently Asked <span className="navy-gradient-text">Questions</span>
             </h2>
             <p className="section-subtitle">
-              Everything you need to know about our 1-on-1 teaching philosophy, level assessment, and scheduling.
+              Everything you need to know about our Al-Azhar teachers, curriculum, and free trial assessment.
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {faqs.map((faq, idx) => (
               <div 
                 key={idx}
@@ -960,34 +581,36 @@ export default function HomePage() {
                   background: '#ffffff',
                   borderRadius: '14px',
                   border: '1px solid var(--border-light)',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  boxShadow: 'var(--shadow-sm)'
                 }}
               >
                 <button
                   onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
                   style={{
                     width: '100%',
-                    padding: '18px 20px',
+                    padding: '18px 22px',
+                    textAlign: 'left',
+                    background: 'none',
+                    border: 'none',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                    background: 'none',
-                    border: 'none',
-                    textAlign: 'left',
                     cursor: 'pointer',
-                    fontSize: '15.5px',
-                    fontWeight: 800,
+                    fontSize: '15px',
+                    fontWeight: 700,
                     color: 'var(--primary-900)'
                   }}
+                  aria-expanded={activeFaq === idx}
                 >
                   <span>{faq.q}</span>
-                  <span style={{ color: 'var(--gold-700)', fontSize: '18px', fontWeight: 800, marginLeft: '12px' }}>
-                    {activeFaq === idx ? '−' : '+'}
+                  <span style={{ fontSize: '18px', color: 'var(--gold-600)', transition: 'transform 0.2s ease', transform: activeFaq === idx ? 'rotate(45deg)' : 'rotate(0)' }}>
+                    +
                   </span>
                 </button>
 
                 {activeFaq === idx && (
-                  <div style={{ padding: '0 20px 18px', fontSize: '14px', color: 'var(--text-body)', lineHeight: 1.7, borderTop: '1px solid var(--bg-soft)' }}>
+                  <div style={{ padding: '0 22px 18px', fontSize: '14px', color: 'var(--text-body)', lineHeight: 1.7, borderTop: '1px solid rgba(8, 27, 51, 0.04)' }}>
                     {faq.a}
                   </div>
                 )}
@@ -997,36 +620,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <section className="cta-banner">
+      {/* Final Call to Action */}
+      <section style={{ padding: '80px 0', background: 'radial-gradient(circle at 50% 50%, #0d284d 0%, #040d1a 100%)', color: '#ffffff', textAlign: 'center' }}>
         <div className="container">
-          <div className="cta-banner-inner">
-            <div className="hero-badge-tag" style={{ background: 'rgba(201, 154, 69, 0.25)', color: 'var(--gold-300)', borderColor: 'rgba(201, 154, 69, 0.4)', marginBottom: '14px' }}>
-              ✨ Experience The Wird Academy Standard
+          <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(201, 154, 69, 0.25)', color: 'var(--gold-300)', padding: '5px 16px', borderRadius: '999px', fontSize: '12px', fontWeight: 800, marginBottom: '16px' }}>
+              <Sparkles size={13} /> Begin With an Authentic Foundation
             </div>
-            <h2 className="cta-title">
-              Begin Your Quran Journey with an Authentic Foundation
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: 800, lineHeight: 1.2, marginBottom: '16px' }}>
+              Read the Quran As It Was Revealed
             </h2>
-            <p className="cta-desc">
-              Book your complimentary 1-on-1 level assessment with a certified Al-Azhar tutor today. Receive a personalized 3-month roadmap matching your timezone.
+            <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '28px' }}>
+              Book your complimentary 1-to-1 trial session today. Meet your Al-Azhar teacher, receive an authentic level assessment, and embark on a clear learning roadmap.
             </p>
-            <div className="cta-actions">
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
               <button 
                 onClick={() => setIsTrialOpen(true)}
                 className="button button-gold"
+                style={{ minHeight: '48px', padding: '0 28px', fontSize: '15px' }}
               >
                 <Sparkles size={16} />
-                <span>Book a Free Trial Session</span>
+                <span>Book Your Free Trial</span>
               </button>
-
               <a 
-                href="https://wa.me/201061858535?text=Hello%20Wird%20Academy,%20I%20am%20ready%20to%20start%20classes."
+                href="https://wa.me/201061858535?text=Hello%20Wird%20Academy,%20I%20would%20like%20to%20inquire%20about%20classes."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button button-whatsapp"
+                style={{ minHeight: '48px', padding: '0 24px', fontSize: '15px' }}
               >
                 <MessageCircle size={16} />
-                <span>WhatsApp: 01061858535</span>
+                <span>Chat on WhatsApp</span>
               </a>
             </div>
           </div>

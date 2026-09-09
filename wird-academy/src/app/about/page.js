@@ -139,9 +139,9 @@ export default function AboutPage() {
       <section style={{ padding: '70px 0', background: 'var(--bg-soft)', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Core Values • القيم الجوهرية</div>
+            <div className="section-tag">OUR TEACHING APPROACH</div>
             <h2 className="section-title">
-              Our 4 Inviolable <span className="navy-gradient-text">Academic Standards</span>
+              The Principles Behind Every <span className="navy-gradient-text">Wird Lesson</span>
             </h2>
           </div>
 
@@ -150,12 +150,12 @@ export default function AboutPage() {
               <div className="value-icon">
                 <Target size={24} />
               </div>
-              <h3 className="value-title">Accuracy Before Speed</h3>
+              <h3 className="value-title">1. Accuracy Before Speed</h3>
               <div className="value-quote">
-                "We would rather a student read one page correctly than ten pages approximately."
+                “We would rather a learner read one page accurately than ten pages without mastery.”
               </div>
               <p className="value-desc">
-                Precision is non-negotiable. Every Makhraj (articulation point) and Sifah (characteristic) is practiced until articulation is natural and flawless.
+                We never rush learners through the Quran. Each letter is taught from its correct point of articulation (makhraj), helping preserve accurate pronunciation, meaning, and reverence.
               </p>
             </div>
 
@@ -163,12 +163,12 @@ export default function AboutPage() {
               <div className="value-icon">
                 <Award size={24} />
               </div>
-              <h3 className="value-title">Progress That Is Earned</h3>
+              <h3 className="value-title">2. Progress Through Mastery</h3>
               <div className="value-quote">
-                "A level ends when the student passes its assessment, not when its lessons run out."
+                “A level is complete when the learner demonstrates mastery—not simply when the lessons end.”
               </div>
               <p className="value-desc">
-                We believe in genuine mastery. Assessments confirm retention and understanding before moving to higher Surahs or advanced texts.
+                Learners do not move to a new book or surah prematurely. Progress happens only after the skills and milestones of the current stage have been securely mastered.
               </p>
             </div>
 
@@ -176,12 +176,12 @@ export default function AboutPage() {
               <div className="value-icon">
                 <Clock size={24} />
               </div>
-              <h3 className="value-title">Consistency Over Intensity</h3>
+              <h3 className="value-title">3. Consistency Over Intensity</h3>
               <div className="value-quote">
-                "A small portion held to every week outlasts a burst of effort that fades."
+                “A small portion sustained each week outlasts a burst of effort that quickly fades.”
               </div>
               <p className="value-desc">
-                Following the Prophetic Sunnah of steady, continuous deeds, regular weekly 1-on-1 sessions guarantee lasting Qur'anic connection.
+                Regular, focused 1-to-1 lessons support stronger long-term retention, steady confidence, and a lasting connection with the Quran.
               </p>
             </div>
 
@@ -189,25 +189,25 @@ export default function AboutPage() {
               <div className="value-icon">
                 <Users size={24} />
               </div>
-              <h3 className="value-title">Every Student Is Known</h3>
+              <h3 className="value-title">4. Every Learner Is Known</h3>
               <div className="value-quote">
-                "No one here is a slot on a schedule."
+                “Every learner is seen, understood, and supported.”
               </div>
               <p className="value-desc">
-                Our faculty builds a warm, empathetic relationship with each learner, adjusting methods to their individual learning styles and cognitive needs.
+                Each learner is paired with a dedicated teacher who comes to understand their starting point, learning pace, strengths, and areas needing further practice.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Faculty & Scholars Section (All 5 Certified Scholars) */}
-      <section id="faculty" style={{ padding: '80px 0', background: '#ffffff' }}>
+      {/* Teachers Section (All 5 Certified Scholars) */}
+      <section id="teachers" style={{ padding: '80px 0', background: '#ffffff' }}>
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Our Faculty &amp; Scholars</div>
+            <div className="section-tag">Qualified Instructors</div>
             <h2 className="section-title">
-              Meet Our Certified <span className="navy-gradient-text">Al-Azhar Faculty</span>
+              Meet Our <span className="navy-gradient-text">Teachers</span>
             </h2>
             <p className="section-subtitle">
               Every instructor is an Al-Azhar graduate holding an authentic Ijazah, trained in child pedagogy, Tajweed texts, and English instruction.
