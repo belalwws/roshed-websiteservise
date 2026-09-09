@@ -164,7 +164,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🏠</span>
-                    <span>Home (الرئيسية)</span>
+                    <span>Home</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -176,7 +176,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🏛️</span>
-                    <span>About Us &amp; Mission (من نحن)</span>
+                    <span>About Us &amp; Mission</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -188,7 +188,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>📚</span>
-                    <span>5 Focused Programmes (البرامج والمناهج)</span>
+                    <span>5 Focused Programmes</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -200,7 +200,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>⭐</span>
-                    <span>Teaching Approach (منهجنا التعليمي)</span>
+                    <span>Teaching Approach</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -212,7 +212,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🛡️</span>
-                    <span>Why Choose Us (لماذا أكاديمية ورد)</span>
+                    <span>Why Choose Us</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -224,7 +224,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>📜</span>
-                    <span>Reviews &amp; Experiences (آراء العائلات)</span>
+                    <span>Reviews &amp; Experiences</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -236,7 +236,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>🎓</span>
-                    <span>Meet Our Teachers (المعلمون المعتمدون)</span>
+                    <span>Meet Our Teachers</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
@@ -248,7 +248,7 @@ export default function Navbar({ onOpenTrial }) {
                 >
                   <span style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span>📞</span>
-                    <span>Contact Us (تواصل معنا)</span>
+                    <span>Contact Us</span>
                   </span>
                   <ChevronRight size={16} />
                 </Link>
