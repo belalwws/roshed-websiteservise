@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
@@ -19,6 +19,17 @@ import {
 export default function Navbar({ onOpenTrial }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -127,17 +138,6 @@ export default function Navbar({ onOpenTrial }) {
                 <Sparkles size={14} />
                 <span>Book Free Trial</span>
               </button>
-
-              {/* Mobile Compact WhatsApp Quick Action */}
-              <a 
-                href="https://wa.me/201061858535" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="mobile-quick-whatsapp show-tablet"
-                aria-label="WhatsApp Chat"
-              >
-                <MessageCircle size={18} />
-              </a>
 
               {/* Mobile Hamburger Menu Toggle */}
               <button 
