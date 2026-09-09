@@ -56,7 +56,7 @@ export default function Navbar({ onOpenTrial }) {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div className="top-bar-right hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <a 
                 href="https://wa.me/201061858535?text=Hello%20Wird%20Academy,%20I%20would%20like%20to%20inquire%20about%20Quran%20and%20Arabic%20classes."
                 target="_blank"
