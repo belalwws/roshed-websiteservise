@@ -30,7 +30,7 @@ export default function Navbar({ onOpenTrial }) {
               {/* Desktop announcement */}
               <div className="top-bar-desktop-content hide-mobile">
                 <span className="top-bar-badge">
-                  <Award size={12} /> Al-Azhar Ijazah Certified Faculty
+                  <Award size={12} /> Al-Azhar Ijazah Certified Teachers
                 </span>
                 <span className="top-bar-text-main">
                   Qualified Quran Teachers • Personalised 1-to-1 Lessons • Clear Progress Reports

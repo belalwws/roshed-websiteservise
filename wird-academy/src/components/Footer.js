@@ -61,11 +61,11 @@ export default function Footer({ onOpenTrial }) {
             <div className="footer-links">
               <Link href="/" className="footer-link">Home (الرئيسية)</Link>
               <Link href="/about" className="footer-link">About Us &amp; Mission (من نحن)</Link>
-              <Link href="/#courses" className="footer-link">Academic Programs (البرامج)</Link>
-              <Link href="/#values" className="footer-link">Core Values (القيم الجوهرية)</Link>
-              <Link href="/#why-us" className="footer-link">Why Choose Us (ليه إحنا)</Link>
+              <Link href="/#courses" className="footer-link">5 Focused Programmes (البرامج والمناهج)</Link>
+              <Link href="/#approach" className="footer-link">Teaching Approach (منهجنا التعليمي)</Link>
+              <Link href="/#why-us" className="footer-link">Why Choose Us (لماذا نحن)</Link>
               <Link href="/#feedback" className="footer-link">Verified Reviews (آراء أولياء الأمور)</Link>
-              <Link href="/about#faculty" className="footer-link">Certified Scholars (المعلمون)</Link>
+              <Link href="/about#teachers" className="footer-link">Meet Our Teachers (المعلمون المعتمدون)</Link>
               <Link href="/contact" className="footer-link">Contact Us (تواصل معنا)</Link>
             </div>
           </div>
