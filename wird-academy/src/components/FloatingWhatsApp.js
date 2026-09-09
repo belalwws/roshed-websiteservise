@@ -14,8 +14,8 @@ export default function FloatingWhatsApp() {
         id="floating-whatsapp-btn"
       >
         <span className="floating-whatsapp-pulse" aria-hidden="true" />
-        <MessageCircle size={28} className="floating-whatsapp-icon" />
-        <span className="floating-whatsapp-label">WhatsApp</span>
+        <MessageCircle className="floating-whatsapp-icon" />
+        <span className="floating-whatsapp-tooltip" role="tooltip">WhatsApp</span>
       </a>
     </aside>
   );
