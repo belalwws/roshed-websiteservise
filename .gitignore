@@ -34,3 +34,8 @@ yarn-error.log*
 # OS files
 .DS_Store
 Thumbs.db
+
+# Archives & Temporary references
+*.tar.gz
+reference.png
+

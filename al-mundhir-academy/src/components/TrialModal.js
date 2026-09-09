@@ -1,298 +1,233 @@
 'use client';
 
 import { useState } from 'react';
-import { X, Send, Sparkles, CheckCircle2, ShieldCheck, HeartHandshake, PhoneCall } from 'lucide-react';
+import confetti from 'canvas-confetti';
+import { X, Sparkles, CheckCircle2, MessageCircle, User, Calendar, BookOpen, Globe, Phone } from 'lucide-react';
 
 export default function TrialModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     ageGroup: 'أطفال (7-12 سنة)',
     track: 'تحفيظ القرآن الكريم وتجويده',
-    country: 'السعودية 🇸🇦',
-    level: '',
-    whatsapp: ''
+    country: 'المملكة العربية السعودية',
+    phone: '',
+    notes: '',
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const message = `✨ *طلب حجز حصة تجريبية مجانية - أكاديمية المنذر* ✨%0A%0A` +
-      `👤 *اسم الطالب:* ${formData.firstName} ${formData.lastName}%0A` +
-      `🎂 *الفئة العمرية:* ${formData.ageGroup}%0A` +
-      `🌍 *الدولة:* ${formData.country}%0A` +
-      `📖 *المسار المطلوب:* ${formData.track}%0A` +
-      `📝 *مستوى الطالب والملاحظات:* ${formData.level || 'جديد / تحديد في جلسة التقييم'}%0A` +
-      `📱 *رقم الواتساب:* ${formData.whatsapp}%0A%0A` +
-      `🎯 *المرجو تأكيد موعد جلسة التقييم والحصة التجريبية المجانية.*`;
-
-    const whatsappUrl = `https://wa.me/201551669364?text=${message}`;
     
-    window.open(whatsappUrl, '_blank');
+    try {
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.6 },
+        colors: ['#E8C76A', '#7C3AED', '#25D366', '#FFFFFF']
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
     setIsSubmitted(true);
+
+    const message = `السلام عليكم ورحمة الله وبركاته،
+أرغب في حجز الحصة التجريبية المجانية في *أكاديمية المنذر للقرآن الكريم*:
+📌 *اسم الطالب/ولي الأمر:* ${formData.name}
+🎂 *الفئة العمرية:* ${formData.ageGroup}
+📖 *المسار المطلوب:* ${formData.track}
+🌍 *الدولة:* ${formData.country}
+📱 *رقم الواتساب:* ${formData.phone}
+${formData.notes ? `📝 *ملاحظات:* ${formData.notes}` : ''}
+
+شكراً لكم، ونتطلع لتأكيد الموعد المناسب.`;
+
+    const whatsappUrl = `https://wa.me/201551669364?text=${encodeURIComponent(message)}`;
+
+    setTimeout(() => {
+      window.open(whatsappUrl, '_blank');
+    }, 800);
   };
 
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      backgroundColor: 'rgba(4, 14, 22, 0.82)',
-      backdropFilter: 'blur(8px)',
-      WebkitBackdropFilter: 'blur(8px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 9999,
-      padding: '16px'
-    }}>
-      <div style={{
-        backgroundColor: '#0c2333',
-        border: '1px solid rgba(205, 168, 78, 0.35)',
-        borderRadius: '24px',
-        width: '100%',
-        maxWidth: '560px',
-        maxHeight: '92vh',
-        overflowY: 'auto',
-        boxShadow: '0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(205, 168, 78, 0.25)',
-        color: '#f8fafc',
-        position: 'relative',
-        padding: '30px 24px'
-      }}>
-        {/* Close Button */}
-        <button
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div 
+        className="relative w-full max-w-lg bg-[#140833] border border-[#E8C76A]/30 rounded-3xl p-6 sm:p-8 shadow-2xl shadow-[#7C3AED]/20 text-right overflow-hidden max-h-[92vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button 
           onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '20px',
-            left: '20px',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: '1px solid rgba(205, 168, 78, 0.2)',
-            color: '#f8fafc',
-            width: '38px',
-            height: '38px',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            transition: 'all 0.2s'
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(205, 168, 78, 0.25)'; e.currentTarget.style.color = '#cda84e'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; e.currentTarget.style.color = '#f8fafc'; }}
+          className="absolute top-5 left-5 p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer"
+          aria-label="إغلاق"
         >
-          <X size={20} />
+          <X className="w-5 h-5" />
         </button>
 
-        {/* Modal Header */}
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '4px 14px',
-            borderRadius: '999px',
-            background: 'rgba(205, 168, 78, 0.12)',
-            border: '1px solid rgba(205, 168, 78, 0.3)',
-            color: '#cda84e',
-            fontSize: '0.85rem',
-            fontWeight: 700,
-            marginBottom: '10px'
-          }}>
-            <Sparkles size={16} />
-            حصة تجريبية مجانية 100%
-          </div>
-          <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f8fafc', marginBottom: '6px' }}>
-            احجز حصة تقييم وتجربة لابنك الآن
-          </h3>
-          <p style={{ color: '#94a3b8', fontSize: '0.92rem' }}>
-            جلسة فردية خاصة (1-on-1) مع معلم متخصص لتحديد المستوى ووضع الخطة المناسبة
-          </p>
-        </div>
-
-        {isSubmitted ? (
-          <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-            <div style={{
-              width: '70px',
-              height: '70px',
-              borderRadius: '50%',
-              background: 'rgba(37, 211, 102, 0.15)',
-              border: '2px solid #25d366',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 18px auto',
-              color: '#25d366'
-            }}>
-              <CheckCircle2 size={40} />
+        {!isSubmitted ? (
+          <div>
+            <div className="text-center pb-5 border-b border-white/10">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#E8C76A]/15 border border-[#E8C76A]/30 text-[#E8C76A] mb-3">
+                <Sparkles className="w-6 h-6" />
+              </div>
+              <h3 className="font-cairo font-black text-2xl text-white">
+                احجز حصتك التجريبية <span className="gold-gradient-text">المجانية</span>
+              </h3>
+              <p className="text-xs text-gray-300 mt-1 font-tajawal">
+                تقييم فوري لمستوى الطالب وتنسيق مواعيد مرنة تناسبكم
+              </p>
             </div>
-            <h4 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '8px', color: '#f8fafc' }}>
-              تم إرسال طلبك بنجاح!
-            </h4>
-            <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.7 }}>
-              جارٍ تحويلك إلى محادثة الواتساب المباشرة مع إدارة أكاديمية المنذر لتأكيد موعد الحصة التجريبية.
-            </p>
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-              <button
-                onClick={() => { setIsSubmitted(false); onClose(); }}
-                className="btn-gold"
-                style={{ padding: '10px 24px', fontSize: '0.95rem' }}
+
+            <form onSubmit={handleSubmit} className="mt-5 space-y-4 text-xs sm:text-sm">
+              <div>
+                <label className="block text-gray-300 font-medium mb-1 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-[#E8C76A]" />
+                  <span>الاسم الكامل *</span>
+                </label>
+                <input 
+                  type="text" 
+                  required
+                  placeholder="اسم الطالب أو ولي الأمر"
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#E8C76A]"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-gray-300 font-medium mb-1 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-[#E8C76A]" />
+                    <span>الفئة العمرية *</span>
+                  </label>
+                  <select 
+                    value={formData.ageGroup}
+                    onChange={(e) => setFormData({...formData, ageGroup: e.target.value})}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#1A0B3E] border border-white/10 text-white focus:outline-none focus:border-[#E8C76A]"
+                  >
+                    <option value="أطفال (4-6 سنوات)">أطفال (٤-٦ سنوات)</option>
+                    <option value="أطفال (7-12 سنة)">أطفال (٧-١٢ سنة)</option>
+                    <option value="مراهقين (13-17 سنة)">مراهقين (١٣-١٧ سنة)</option>
+                    <option value="بالغين (18+) وكل الأعمار">بالغين (١٨+) وكل الأعمار</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-gray-300 font-medium mb-1 flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-[#E8C76A]" />
+                    <span>الدولة *</span>
+                  </label>
+                  <select 
+                    value={formData.country}
+                    onChange={(e) => setFormData({...formData, country: e.target.value})}
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#1A0B3E] border border-white/10 text-white focus:outline-none focus:border-[#E8C76A]"
+                  >
+                    <option value="المملكة العربية السعودية">المملكة العربية السعودية</option>
+                    <option value="الإمارات العربية المتحدة">الإمارات العربية المتحدة</option>
+                    <option value="دولة الكويت">دولة الكويت</option>
+                    <option value="دولة قطر">دولة قطر</option>
+                    <option value="سلطنة عمان">سلطنة عمان</option>
+                    <option value="مملكة البحرين">مملكة البحرين</option>
+                    <option value="جمهورية مصر العربية">جمهورية مصر العربية</option>
+                    <option value="أخرى">أخرى</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-gray-300 font-medium mb-1 flex items-center gap-1.5">
+                  <BookOpen className="w-3.5 h-3.5 text-[#E8C76A]" />
+                  <span>المسار أو الكورس المطلوب *</span>
+                </label>
+                <select 
+                  value={formData.track}
+                  onChange={(e) => setFormData({...formData, track: e.target.value})}
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#1A0B3E] border border-white/10 text-white focus:outline-none focus:border-[#E8C76A]"
+                >
+                  <option value="تحفيظ القرآن الكريم وتجويده">تحفيظ القرآن الكريم وتجويده</option>
+                  <option value="كورس تجويد للمبتدئين">كورس تجويد للمبتدئين</option>
+                  <option value="تأسيس اللغة العربية">تأسيس اللغة العربية</option>
+                  <option value="تدريس العلوم الشرعية (فقه، عقيدة، حديث)">تدريس العلوم الشرعية (فقه، عقيدة، حديث)</option>
+                  <option value="تأسيس وعي الطفل المسلم">تأسيس وعي الطفل المسلم</option>
+                  <option value="المواد الدراسية المدرسية (مناهج)">المواد الدراسية المدرسية (مناهج)</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-gray-300 font-medium mb-1 flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>رقم الواتساب مع المفتاح الدولي *</span>
+                </label>
+                <input 
+                  type="tel" 
+                  required
+                  placeholder="+966 5X XXX XXXX"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#E8C76A] dir-ltr text-right"
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-300 font-medium mb-1">
+                  ملاحظات أو مستوى الطالب الحالي (اختياري)
+                </label>
+                <textarea 
+                  rows="2"
+                  placeholder="مثال: يحفظ جزء عم، أو مبتدئ في الحروف..."
+                  value={formData.notes}
+                  onChange={(e) => setFormData({...formData, notes: e.target.value})}
+                  className="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#E8C76A] resize-none"
+                />
+              </div>
+
+              <div className="pt-2">
+                <button 
+                  type="submit" 
+                  className="btn-tartelah-gold w-full py-3.5 text-sm font-bold cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>تأكيد الحجز والتنسيق عبر واتساب</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        ) : (
+          <div className="py-8 text-center space-y-4">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center">
+              <CheckCircle2 className="w-8 h-8" />
+            </div>
+
+            <div className="space-y-1">
+              <h3 className="font-cairo font-black text-2xl text-white">
+                تم تسجيل طلبك بنجاح!
+              </h3>
+              <p className="text-xs text-gray-300 font-tajawal">
+                جاري توجيهك إلى واتساب أكاديمية المنذر لتأكيد الموعد المناسب.
+              </p>
+            </div>
+
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a 
+                href={`https://wa.me/201551669364?text=${encodeURIComponent('السلام عليكم، قمت بتسجيل طلب الحصة التجريبية في أكاديمية المنذر وأرغب في تأكيد الموعد.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto py-3 px-6 rounded-full bg-[#25D366] text-white font-bold text-xs flex items-center justify-center gap-2"
               >
-                إغلاق النافذة
+                <MessageCircle className="w-4 h-4" />
+                <span>فتح محادثة واتساب الآن</span>
+              </a>
+
+              <button 
+                onClick={onClose}
+                className="btn-tartelah-outline w-full sm:w-auto py-3 px-6 text-xs cursor-pointer"
+              >
+                إغلاق
               </button>
             </div>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
-              <div>
-                <label className="form-label" style={{ fontSize: '0.88rem' }}>الاسم الأول للطفل / الطالب *</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  required
-                  placeholder="مثال: يوسف"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  className="form-control"
-                  style={{ padding: '10px 14px', fontSize: '0.95rem' }}
-                />
-              </div>
-              <div>
-                <label className="form-label" style={{ fontSize: '0.88rem' }}>اسم العائلة / ولي الأمر *</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  required
-                  placeholder="مثال: الغامدي"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  className="form-control"
-                  style={{ padding: '10px 14px', fontSize: '0.95rem' }}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
-              <div>
-                <label className="form-label" style={{ fontSize: '0.88rem' }}>الفئة العمرية *</label>
-                <select
-                  name="ageGroup"
-                  value={formData.ageGroup}
-                  onChange={handleChange}
-                  className="form-control"
-                  style={{ padding: '10px 14px', fontSize: '0.92rem' }}
-                >
-                  <option value="أطفال (4-6 سنوات)">أطفال (4-6 سنوات)</option>
-                  <option value="أطفال (7-12 سنة)">أطفال (7-12 سنة)</option>
-                  <option value="مراهقين (13-17 سنة)">مراهقين (13-17 سنة)</option>
-                  <option value="بالغين (18+ سنة)">بالغين (18+ سنة)</option>
-                  <option value="جميع الأعمار / عائلي">حلقة عائلية</option>
-                </select>
-              </div>
-              <div>
-                <label className="form-label" style={{ fontSize: '0.88rem' }}>دولة الإقامة *</label>
-                <select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  className="form-control"
-                  style={{ padding: '10px 14px', fontSize: '0.92rem' }}
-                >
-                  <option value="السعودية 🇸🇦">السعودية 🇸🇦</option>
-                  <option value="مصر 🇪🇬">مصر 🇪🇬</option>
-                  <option value="الإمارات 🇦🇪">الإمارات 🇦🇪</option>
-                  <option value="الكويت 🇰🇼">الكويت 🇰🇼</option>
-                  <option value="قطر 🇶🇦">قطر 🇶🇦</option>
-                  <option value="سلطنة عمان 🇴🇲">سلطنة عمان 🇴🇲</option>
-                  <option value="البحرين 🇧🇭">البحرين 🇧🇭</option>
-                  <option value="دولة أخرى 🌍">دولة أخرى 🌍</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '14px' }}>
-              <label className="form-label" style={{ fontSize: '0.88rem' }}>المسار التعليمي المرغوب *</label>
-              <select
-                name="track"
-                value={formData.track}
-                onChange={handleChange}
-                className="form-control"
-                style={{ padding: '10px 14px', fontSize: '0.92rem' }}
-              >
-                <option value="تحفيظ القرآن الكريم وتجويده">تحفيظ القرآن الكريم وتجويده</option>
-                <option value="كورس تجويد للمبتدئين">كورس تجويد للمبتدئين</option>
-                <option value="تأسيس اللغة العربية (القاعدة النورانية / نور البيان)">تأسيس اللغة العربية (القاعدة النورانية / نور البيان)</option>
-                <option value="تدريس العلوم الشرعية (فقه، عقيدة، حديث، سيرة)">تدريس العلوم الشرعية (فقه، عقيدة، حديث، سيرة)</option>
-                <option value="تأسيس وعي الطفل المسلم (آداب وأخلاق إسلامية)">تأسيس وعي الطفل المسلم (آداب وأخلاق إسلامية)</option>
-                <option value="المواد الدراسية والمناهج المدرسية (تأسيس ومتابعة)">المواد الدراسية والمناهج المدرسية (تأسيس ومتابعة)</option>
-              </select>
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '14px' }}>
-              <label className="form-label" style={{ fontSize: '0.88rem' }}>رقم الواتساب للتواصل وتحديد الموعد *</label>
-              <input
-                type="tel"
-                name="whatsapp"
-                required
-                placeholder="مثال: +966500000000 أو 01000000000"
-                value={formData.whatsapp}
-                onChange={handleChange}
-                className="form-control"
-                style={{ padding: '10px 14px', fontSize: '0.95rem', direction: 'ltr', textAlign: 'right' }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label className="form-label" style={{ fontSize: '0.88rem' }}>مستوى الطالب الحالي أو أي ملاحظات للمعلم</label>
-              <textarea
-                name="level"
-                rows="2"
-                placeholder="مثال: يحفظ جزء عم، أو مبتدئ في الحروف ونور البيان..."
-                value={formData.level}
-                onChange={handleChange}
-                className="form-control"
-                style={{ padding: '10px 14px', fontSize: '0.92rem', resize: 'vertical' }}
-              ></textarea>
-            </div>
-
-            {/* Trust features */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              background: 'rgba(255, 255, 255, 0.04)',
-              padding: '10px 14px',
-              borderRadius: '12px',
-              fontSize: '0.8rem',
-              color: '#cbd5e1',
-              marginBottom: '20px',
-              border: '1px solid rgba(255, 255, 255, 0.08)'
-            }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <ShieldCheck size={16} color="#cda84e" /> بدون التزام مالي
-              </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <HeartHandshake size={16} color="#cda84e" /> معلمون ومعلمات معتمدون
-              </span>
-            </div>
-
-            <button
-              type="submit"
-              className="btn-gold"
-              style={{ width: '100%', padding: '13px', fontSize: '1.05rem', borderRadius: '14px' }}
-            >
-              <Send size={18} />
-              تأكيد حجز الحصة التجريبية عبر الواتساب
-            </button>
-          </form>
         )}
       </div>
     </div>

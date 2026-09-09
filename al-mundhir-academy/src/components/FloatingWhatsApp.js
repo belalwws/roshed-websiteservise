@@ -1,0 +1,1 @@
+import {MessageCircle} from 'lucide-react';export default function FloatingWhatsApp(){return <a className="floating-whatsapp" href="https://wa.me/201551669364" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب"><MessageCircle size={26}/></a>}
