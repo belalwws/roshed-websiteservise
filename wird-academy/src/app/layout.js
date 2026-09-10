@@ -3,9 +3,9 @@ import FloatingWhatsApp from '../components/FloatingWhatsApp';
 
 export const metadata = {
   metadataBase: new URL('https://wirdacademy.com'),
-  title: 'Wird Academy | أكاديمية ورد - Read it as it was revealed',
+  title: 'Wird Academy | Read the Quran as It Was Revealed',
   description: 'Wird Academy offers 1-on-1 online Quran recitation, Tajweed, Classical Arabic, and Islamic Studies with certified Al-Azhar Ijazah scholars. 100% personalized learning for students worldwide.',
-  keywords: 'Wird Academy, أكاديمية ورد, Learn Quran online, Tajweed classes, Noor Al-Bayan, Al-Azhar certified tutors, Quran memorization Hifz, Islamic studies in English, Arabic for non-native speakers',
+  keywords: 'Wird Academy, Learn Quran online, Tajweed classes, Noor Al-Bayan, Al-Azhar certified tutors, Quran memorization Hifz, Islamic studies in English, Arabic for non-native speakers',
   icons: {
     icon: '/assets/logo.jpg',
     apple: '/assets/logo.jpg',

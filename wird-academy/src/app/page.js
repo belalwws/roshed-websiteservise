@@ -46,7 +46,7 @@ export default function HomePage() {
     {
       id: 'recitation-tajweed',
       category: 'quran',
-      badge: 'Core Recitation • أحكام التجويد',
+      badge: 'Core Recitation & Tajweed',
       title: '2. Quran Recitation & Tajweed',
       desc: 'Develop clear, confident recitation through accurate makharij and applied Tajweed. Each lesson combines guided practice, live correction, and focused feedback, helping learners apply Tajweed rules accurately and recite with clarity and confidence.',
       tags: ['Accurate Makharij', 'Applied Tajweed', 'Live 1-to-1 Correction']
@@ -54,7 +54,7 @@ export default function HomePage() {
     {
       id: 'hifz-memorisation',
       category: 'quran',
-      badge: 'Retention • الحفظ المتقن',
+      badge: 'Quran Memorisation & Retention',
       title: '3. Hifz & Quran Memorisation',
       desc: 'Follow a structured memorisation plan tailored to the learner’s level and pace. New memorisation is supported by systematic revision and regular assessment to strengthen accuracy and long-term retention.',
       tags: ['Personalised Hifz Plan', 'Systematic Revision', 'Progress Reviews']
@@ -62,7 +62,7 @@ export default function HomePage() {
     {
       id: 'islamic-studies',
       category: 'islamic',
-      badge: 'Faith & Morals • العلوم الشرعية',
+      badge: 'Faith & Islamic Studies',
       title: '4. Islamic Studies',
       desc: 'Build sound Islamic knowledge through age-appropriate lessons grounded in authentic sources. Learners explore Aqeedah, Fiqh, Seerah, worship, daily adhkar, and Islamic manners in a clear, practical way.',
       tags: ['Aqeedah & Fiqh', 'Seerah & Stories of the Prophets', 'Adhkar & Islamic Manners']
@@ -70,7 +70,7 @@ export default function HomePage() {
     {
       id: 'quranic-arabic',
       category: 'arabic',
-      badge: 'Comprehension • لغة القرآن',
+      badge: 'Quranic Arabic & Meaning',
       title: '5. Quranic Arabic',
       desc: 'Begin understanding the language of the Quran through high-frequency vocabulary, essential grammar, and familiar Quranic expressions. Learners gradually recognise words and structures within the verses they recite.',
       tags: ['High-Frequency Quranic Vocabulary', 'Foundational Grammar', 'Guided Verse Understanding']

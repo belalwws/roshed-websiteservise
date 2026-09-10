@@ -85,13 +85,13 @@ export default function AboutPage() {
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
             <div className="hero-badge-tag" style={{ marginBottom: '14px' }}>
-              <Award size={13} /> About Wird Academy • من نحن
+              <Award size={13} /> About Wird Academy
             </div>
             <h1 style={{ fontSize: 'clamp(28px, 4vw, 48px)', fontWeight: 800, color: 'var(--primary-900)', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '12px' }}>
               "Read It As It Was Revealed"
             </h1>
-            <p className="hero-slogan-arabic" style={{ fontSize: '24px', color: 'var(--gold-700)', marginBottom: '16px' }}>
-              اقرأه كما أُنزِل — لا تقريبياً ولا بالنقل الحرفي
+            <p style={{ fontSize: '18px', color: 'var(--gold-700)', fontWeight: 700, marginBottom: '16px' }}>
+              Not approximately, not from transliteration — but as it was revealed.
             </p>
             <p style={{ fontSize: '15.5px', color: 'var(--text-body)', lineHeight: 1.7 }}>
               Dedicated to helping non-Arabic speaking Muslims across the globe master the Holy Quran with precise articulation, authentic Ijazah Sanad, and bespoke 1-on-1 scholarly attention.
@@ -230,22 +230,22 @@ export default function AboutPage() {
 
                 <div className="faculty-body">
                   <div>
-                    <div className="faculty-section-title">🎓 Education (التعليم الأكاديمي)</div>
+                    <div className="faculty-section-title">🎓 Academic Education</div>
                     <p className="faculty-text">{teacher.education}</p>
                   </div>
 
                   <div>
-                    <div className="faculty-section-title">📜 Ijāzahs &amp; Qur'an (الإجازات القرآنية)</div>
+                    <div className="faculty-section-title">📜 Quranic Ijāzahs</div>
                     <p className="faculty-text">{teacher.ijazah}</p>
                   </div>
 
                   <div>
-                    <div className="faculty-section-title">🌟 Courses &amp; Specialization (التدريب والتخصص)</div>
+                    <div className="faculty-section-title">🌟 Training &amp; Specialization</div>
                     <p className="faculty-text">{teacher.training}</p>
                   </div>
 
                   <div>
-                    <div className="faculty-section-title">⏱️ Experience (الخبرة التدريسية)</div>
+                    <div className="faculty-section-title">⏱️ Teaching Experience</div>
                     <p className="faculty-text">{teacher.experience}</p>
                   </div>
 

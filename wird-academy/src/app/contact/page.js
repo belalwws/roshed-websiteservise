@@ -52,7 +52,7 @@ export default function ContactPage() {
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto' }}>
             <div className="hero-badge-tag" style={{ marginBottom: '14px' }}>
-              <MessageCircle size={13} /> Contact Us • تواصل معنا
+              <MessageCircle size={13} /> Contact Us
             </div>
             <h1 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, color: 'var(--primary-900)', lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '12px' }}>
               Get in Touch with Academic Coordinators
@@ -297,7 +297,7 @@ export default function ContactPage() {
 
                   <div>
                     <label style={{ display: 'block', fontSize: '12.5px', fontWeight: 700, color: 'var(--primary-900)', marginBottom: '4px' }}>
-                      Current Recitation Level (مستوى الطالب)
+                      Current Recitation Level
                     </label>
                     <input 
                       type="text"

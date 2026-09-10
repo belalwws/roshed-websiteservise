@@ -32,7 +32,7 @@ export default function Footer({ onOpenTrial }) {
                   WIRD <span className="gold-gradient-text">ACADEMY</span>
                 </div>
                 <div className="brand-subtitle" style={{ color: 'var(--gold-400)' }}>
-                  أكاديمية ورد للقرآن والعلوم الشرعية
+                  Online Quran &amp; Arabic Academy
                 </div>
               </div>
             </Link>
@@ -59,14 +59,14 @@ export default function Footer({ onOpenTrial }) {
           <div>
             <h4 className="footer-col-title">Quick Navigation</h4>
             <div className="footer-links">
-              <Link href="/" className="footer-link">Home (الرئيسية)</Link>
-              <Link href="/about" className="footer-link">About Us &amp; Mission (من نحن)</Link>
-              <Link href="/#courses" className="footer-link">5 Focused Programmes (البرامج والمناهج)</Link>
-              <Link href="/#approach" className="footer-link">Teaching Approach (منهجنا التعليمي)</Link>
-              <Link href="/#why-us" className="footer-link">Why Choose Us (لماذا نحن)</Link>
-              <Link href="/#feedback" className="footer-link">Verified Reviews (آراء أولياء الأمور)</Link>
-              <Link href="/about#teachers" className="footer-link">Meet Our Teachers (المعلمون المعتمدون)</Link>
-              <Link href="/contact" className="footer-link">Contact Us (تواصل معنا)</Link>
+              <Link href="/" className="footer-link">Home</Link>
+              <Link href="/about" className="footer-link">About Us &amp; Mission</Link>
+              <Link href="/#courses" className="footer-link">5 Focused Programmes</Link>
+              <Link href="/#approach" className="footer-link">Teaching Approach</Link>
+              <Link href="/#why-us" className="footer-link">Why Choose Us</Link>
+              <Link href="/#feedback" className="footer-link">Verified Reviews</Link>
+              <Link href="/about#teachers" className="footer-link">Meet Our Teachers</Link>
+              <Link href="/contact" className="footer-link">Contact Us</Link>
             </div>
           </div>
 
@@ -133,13 +133,13 @@ export default function Footer({ onOpenTrial }) {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <div>
-            © {new Date().getFullYear()} <strong>Wird Academy (أكاديمية ورد)</strong>. All Rights Reserved.
+            © {new Date().getFullYear()} <strong>Wird Academy</strong>. All Rights Reserved.
           </div>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
             <span>🔒 1-on-1 Dedicated Sessions</span>
             <span>⭐ Al-Azhar Ijazah Certified</span>
-            <span className="arabic-font" style={{ color: 'var(--gold-400)', fontSize: '14px' }}>
-              اقرأه كما أُنزِل
+            <span style={{ color: 'var(--gold-400)', fontSize: '13px', fontWeight: 600 }}>
+              Read As It Was Revealed
             </span>
           </div>
         </div>

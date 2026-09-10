@@ -88,7 +88,7 @@ export default function Navbar({ onOpenTrial }) {
               </div>
               <div className="brand-info">
                 <div className="brand-title">WIRD <span className="gold-gradient-text">ACADEMY</span></div>
-                <div className="brand-subtitle">أكاديمية ورد للقرآن والعلوم الشرعية</div>
+                <div className="brand-subtitle">Online Quran &amp; Arabic Academy</div>
               </div>
             </Link>
 

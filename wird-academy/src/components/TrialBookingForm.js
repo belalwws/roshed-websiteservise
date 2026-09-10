@@ -48,6 +48,18 @@ const PROGRAMMES = [
   'Not Sure — I Need Guidance'
 ];
 
+const TIMEZONE_OPTIONS = [
+  'UK & Ireland (London - GMT / BST)',
+  'USA & Canada — Eastern (New York, Toronto - EST / EDT)',
+  'USA & Canada — Central (Chicago, Dallas - CST / CDT)',
+  'USA & Canada — Mountain (Denver, Calgary - MST / MDT)',
+  'USA & Canada — Pacific (Los Angeles, Vancouver - PST / PDT)',
+  'Europe (Paris, Berlin, Amsterdam - CET / CEST)',
+  'Gulf & Saudi Arabia (Riyadh, Dubai, Doha - AST / GST)',
+  'Australia & New Zealand (Sydney, Auckland - AEST)',
+  'Other Timezone / City'
+];
+
 export default function TrialBookingForm({ isModal = false, onSuccess }) {
   const [formData, setFormData] = useState({
     learnerName: '',
@@ -56,7 +68,8 @@ export default function TrialBookingForm({ isModal = false, onSuccess }) {
     programme: 'Quran Recitation & Tajweed',
     currentLevel: '',
     learningGoals: '',
-    cityCountry: '',
+    timeZone: 'UK & Ireland (London - GMT / BST)',
+    customLocation: '',
     whatsappNumber: ''
   });
 
@@ -134,6 +147,10 @@ export default function TrialBookingForm({ isModal = false, onSuccess }) {
       .map(s => `• ${s.day} (${s.period})`)
       .join('%0A');
 
+    const timeZoneString = formData.timeZone === 'Other Timezone / City' && formData.customLocation
+      ? `Other (${formData.customLocation})`
+      : formData.timeZone;
+
     let msg = `*Book Your Free 1-to-1 Trial - Wird Academy*%0A%0A` +
       `*1. Learner's Full Name:* ${encodeURIComponent(formData.learnerName)}%0A` +
       `*2. Learner's Age:* ${encodeURIComponent(formData.ageGroup)}%0A`;
@@ -147,7 +164,7 @@ export default function TrialBookingForm({ isModal = false, onSuccess }) {
       `*6. Learning Goals:* ${encodeURIComponent(formData.learningGoals || 'Mastery and confidence')}%0A%0A` +
       `*7. Preferred Trial Times (Selected slots):*%0A${trialSlotsFormatted}%0A%0A` +
       `*8. Regular Weekly Availability:*%0A${weeklySlotsFormatted}%0A%0A` +
-      `*9. City & Country (Timezone):* ${encodeURIComponent(formData.cityCountry)}%0A` +
+      `*9. Student's Time Zone:* ${encodeURIComponent(timeZoneString)}%0A` +
       `*10. WhatsApp Number:* ${encodeURIComponent(formData.whatsappNumber)}%0A`;
 
     window.open(`https://wa.me/201061858535?text=${msg}`, '_blank');
@@ -410,23 +427,37 @@ export default function TrialBookingForm({ isModal = false, onSuccess }) {
             </div>
           </div>
 
-          {/* 9. City & Country */}
+          {/* 9. Student's Time Zone */}
           <div className="form-group">
-            <label className="form-label" htmlFor="cityCountry">
-              9. City &amp; Country <span className="req">*</span>
+            <label className="form-label" htmlFor="timeZone">
+              9. Student's Time Zone <span className="req">*</span>
             </label>
-            <input 
-              id="cityCountry"
-              type="text" 
-              required 
-              placeholder="e.g. Manchester, United Kingdom"
-              value={formData.cityCountry}
-              onChange={(e) => setFormData({ ...formData, cityCountry: e.target.value })}
+            <select
+              id="timeZone"
+              value={formData.timeZone}
+              onChange={(e) => setFormData({ ...formData, timeZone: e.target.value })}
               className="form-input"
-            />
+            >
+              {TIMEZONE_OPTIONS.map((tz) => (
+                <option key={tz} value={tz}>{tz}</option>
+              ))}
+            </select>
             <span className="form-helper-text">
-              Used only to confirm your local time zone.
+              Ensures your 1-to-1 trial and weekly lessons match your local time.
             </span>
+
+            {formData.timeZone === 'Other Timezone / City' && (
+              <div style={{ marginTop: '10px' }}>
+                <input
+                  type="text"
+                  required
+                  placeholder="Please specify your City & Country (e.g. Singapore / Tokyo)"
+                  value={formData.customLocation}
+                  onChange={(e) => setFormData({ ...formData, customLocation: e.target.value })}
+                  className="form-input"
+                />
+              </div>
+            )}
           </div>
 
           {/* 10. WhatsApp Number */}
