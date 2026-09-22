@@ -147,7 +147,7 @@ ${formData.notes ? `📝 *ملاحظات:* ${formData.notes}` : ''}
                   className="w-full px-4 py-2.5 rounded-xl bg-[#1A0B3E] border border-white/10 text-white focus:outline-none focus:border-[#E8C76A]"
                 >
                   <option value="تحفيظ القرآن الكريم وتجويده">تحفيظ القرآن الكريم وتجويده</option>
-                  <option value="كورس تجويد للمبتدئين">كورس تجويد للمبتدئين</option>
+                  <option value="كورس التجويد الشامل">كورس التجويد الشامل</option>
                   <option value="تأسيس اللغة العربية">تأسيس اللغة العربية</option>
                   <option value="تدريس العلوم الشرعية (فقه، عقيدة، حديث)">تدريس العلوم الشرعية (فقه، عقيدة، حديث)</option>
                   <option value="تأسيس وعي الطفل المسلم">تأسيس وعي الطفل المسلم</option>
