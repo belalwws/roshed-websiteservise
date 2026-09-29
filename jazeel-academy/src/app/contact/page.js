@@ -17,6 +17,7 @@ import {
   Award
 } from 'lucide-react';
 import { FacebookIcon, InstagramIcon } from '../../components/Icons';
+import { courses } from '../../lib/courses';
 
 export default function ContactPage() {
   const [isTrialOpen, setIsTrialOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function ContactPage() {
     name: '',
     email: '',
     phone: '',
-    subject: 'Quran Classes Inquiry',
+    subject: '2 Free Trial Lessons Inquiry',
     message: ''
   });
 
@@ -33,7 +34,7 @@ export default function ContactPage() {
     e.preventDefault();
     setFormSent(true);
 
-    const formattedMsg = `*New Contact Message - Jazeel Academy*%0A%0A` +
+    const formattedMsg = `*New Contact Message - Jazeel Quran Teaching Academy*%0A%0A` +
       `*Name:* ${encodeURIComponent(msgData.name)}%0A` +
       `*Email:* ${encodeURIComponent(msgData.email)}%0A` +
       `*Phone/WhatsApp:* ${encodeURIComponent(msgData.phone)}%0A` +
@@ -145,7 +146,7 @@ export default function ContactPage() {
                     }}
                   >
                     <FacebookIcon size={18} style={{ color: '#1877f2' }} />
-                    <span>Jazeel Academy Official Facebook</span>
+                    <span>Jazeel Quran Teaching Academy Official Facebook</span>
                   </a>
 
                   <a 
@@ -273,11 +274,7 @@ export default function ContactPage() {
                         }}
                       >
                         <option>2 Free Trial Lessons Inquiry</option>
-                        <option>Kids Quran & Tajweed Program</option>
-                        <option>Islamic Studies in English (Fiqh/Seerah)</option>
-                        <option>Classical Arabic Language Track</option>
-                        <option>Teacher Qualification Diploma</option>
-                        <option>Sanad Ijazah (Hafs & Shu'bah)</option>
+                        {courses.map((course) => <option key={course.id}>{course.title}</option>)}
                         <option>Tuition & Sibling Discounts</option>
                         <option>Other Question</option>
                       </select>

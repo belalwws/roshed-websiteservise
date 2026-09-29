@@ -31,7 +31,7 @@ const REVIEWS_DATA = [
 const FEATURED_VIDEO_TESTIMONIALS = [
   {
     id: 'parent-reel',
-    title: 'What Parents & Students Say About Jazeel Academy',
+    title: 'What Parents & Students Say About Jazeel Quran Teaching Academy',
     arabicTitle: 'آراء ورسائل أولياء الأمور والطلاب الصوتية والكتابية',
     videoSrc: '/assets/videos/reviews-parent-reel.mp4',
     thumbnail: '/assets/videos/thumbnails/thumb-parent-reel.jpg',

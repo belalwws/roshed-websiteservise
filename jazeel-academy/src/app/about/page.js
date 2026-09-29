@@ -35,7 +35,7 @@ export default function AboutPage() {
             <Award size={14} /> 12+ Years of Scholarly Excellence
           </div>
           <h1 style={{ fontSize: 'clamp(28px, 3.8vw, 48px)', fontWeight: 900, marginBottom: '12px', lineHeight: 1.2 }}>
-            About Jazeel Academy <span className="gold-gradient-text">أكاديمية جزيل</span>
+            About Jazeel Quran Teaching Academy <span className="gold-gradient-text">أكاديمية جزيل</span>
           </h1>
           <p style={{ maxWidth: '780px', margin: '0 auto', fontSize: '16px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.65 }}>
             Bridging classical Al-Azhar scholarship with modern global education, delivering authentic Quranic, Tajweed, Arabic, and Islamic learning to non-native speakers worldwide.
@@ -54,7 +54,7 @@ export default function AboutPage() {
               </h2>
               
               <p style={{ fontSize: '15px', color: 'var(--text-body)', lineHeight: 1.7, marginBottom: '14px' }}>
-                Founded with a sacred mission to make authentic Islamic knowledge accessible across continents, <strong>Jazeel Academy (أكاديمية جزيل)</strong> has grown from a specialized circle of Azhari educators into a trusted online institution educating Muslim families and students across the United States, United Kingdom, Canada, and Europe.
+                Founded with a sacred mission to make authentic Islamic knowledge accessible across continents, <strong>Jazeel Quran Teaching Academy (أكاديمية جزيل)</strong> has grown from a specialized circle of Azhari educators into a trusted online institution educating Muslim families and students across the United States, United Kingdom, Canada, and Europe.
               </p>
 
               <p style={{ fontSize: '15px', color: 'var(--text-body)', lineHeight: 1.7, marginBottom: '22px' }}>
@@ -208,9 +208,9 @@ export default function AboutPage() {
       <section className="cta-banner">
         <div className="container">
           <div className="cta-banner-inner">
-            <h2 className="cta-title">Experience the Jazeel Academy Difference</h2>
+            <h2 className="cta-title">Experience the Jazeel Quran Teaching Academy Difference</h2>
             <p className="cta-desc">
-              Book a complimentary 1-on-1 trial session with a certified Azhari teacher and see why families worldwide trust Jazeel Academy.
+              Book a complimentary 1-on-1 trial session with a certified Azhari teacher and see why families worldwide trust Jazeel Quran Teaching Academy.
             </p>
             <div className="cta-actions">
               <button onClick={() => setIsTrialOpen(true)} className="button button-gold">

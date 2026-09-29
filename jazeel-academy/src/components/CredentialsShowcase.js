@@ -157,7 +157,7 @@ export default function CredentialsShowcase({ onOpenTrial }) {
             Authentic Credentials &amp; <span className="navy-gradient-text">Connected Sanad Ijazahs</span>
           </h2>
           <p className="section-subtitle">
-            Every teacher and curriculum at Jazeel Academy is backed by verified Al-Azhar university degrees, government licensing, and unbroken chains of recitation (Sanad) linked back to Prophet Muhammad ﷺ.
+            Every teacher and curriculum at Jazeel Quran Teaching Academy is backed by verified Al-Azhar university degrees, government licensing, and unbroken chains of recitation (Sanad) linked back to Prophet Muhammad ﷺ.
           </p>
         </div>
 
@@ -349,7 +349,7 @@ export default function CredentialsShowcase({ onOpenTrial }) {
               100% Scholarly Transparency &amp; Verified Documentation
             </div>
             <div style={{ fontSize: '12.5px', color: 'var(--text-body)', marginTop: '2px' }}>
-              All instructors at Jazeel Academy undergo rigorous background vetting, oral Tajweed recitations, and formal verification of their Al-Azhar credentials before teaching any student.
+              All instructors at Jazeel Quran Teaching Academy undergo rigorous background vetting, oral Tajweed recitations, and formal verification of their Al-Azhar credentials before teaching any student.
             </div>
           </div>
         </div>

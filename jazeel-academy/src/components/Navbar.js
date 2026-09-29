@@ -48,7 +48,7 @@ export default function Navbar({ onOpenTrial }) {
               target="_blank"
               rel="noopener noreferrer"
               className="top-bar-link"
-              aria-label="Contact Jazeel Academy on WhatsApp"
+              aria-label="Contact Jazeel Quran Teaching Academy on WhatsApp"
             >
               <MessageCircle size={14} />
               <span>WhatsApp: 01041479418</span>
@@ -65,13 +65,13 @@ export default function Navbar({ onOpenTrial }) {
             <div className="brand-emblem">
               <img 
                 src="/assets/logo.jpg" 
-                alt="Jazeel Academy Official Logo" 
+                alt="Jazeel Quran Teaching Academy Official Logo"
                 width={44} 
                 height={44}
               />
             </div>
             <div className="brand-info">
-              <div className="brand-title">JAZEEL <span className="gold-gradient-text">ACADEMY</span></div>
+              <div className="brand-title">Jazeel <span className="gold-gradient-text">Quran Teaching Academy</span></div>
               <div className="brand-subtitle">أكاديمية جزيل للقرآن والعلوم الشرعية</div>
             </div>
           </Link>

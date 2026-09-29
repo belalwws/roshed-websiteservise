@@ -2,14 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { X, Sparkles, CheckCircle2, MessageCircle, Phone, Globe, Calendar, Clock, BookOpen, User } from 'lucide-react';
+import { courses } from '../lib/courses';
 
-export default function TrialModal({ isOpen, onClose }) {
+export default function TrialModal({ isOpen, onClose, initialCourse = courses[0].title }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     studentName: '',
     parentName: '',
     ageGroup: 'Kids (4-10 yrs)',
-    course: 'Arabic Reading & Quran Tajweed for Beginners',
+    course: initialCourse,
     country: 'United Kingdom (UK)',
     phone: '',
     preferredTime: 'Evenings / Weekends',
@@ -24,13 +25,17 @@ export default function TrialModal({ isOpen, onClose }) {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (isOpen) setFormData((current) => ({ ...current, course: initialCourse }));
+  }, [isOpen, initialCourse]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
 
-    const msg = `*New 2 Free Trial Request - Jazeel Academy*%0A%0A` +
+    const msg = `*New 2 Free Trial Request - Jazeel Quran Teaching Academy*%0A%0A` +
       `*Student Name:* ${encodeURIComponent(formData.studentName)}%0A` +
       `*Parent Name:* ${encodeURIComponent(formData.parentName || 'Self')}%0A` +
       `*Age Group:* ${encodeURIComponent(formData.ageGroup)}%0A` +
@@ -167,7 +172,6 @@ export default function TrialModal({ isOpen, onClose }) {
                     <option>Kids (4-10 yrs)</option>
                     <option>Teens (11-17 yrs)</option>
                     <option>Adults (18+ yrs)</option>
-                    <option>Teacher Qualification Track</option>
                   </select>
                 </div>
 
@@ -210,15 +214,7 @@ export default function TrialModal({ isOpen, onClose }) {
                     background: '#ffffff'
                   }}
                 >
-                  <option>Arabic Reading & Quran Tajweed for Beginners</option>
-                  <option>Theoretical & Practical Advanced Tajweed</option>
-                  <option>Islamic Jurisprudence (Fiqh) in English</option>
-                  <option>Quranic Interpretation (Tafseer) in English</option>
-                  <option>Prophetic Biography (Seerah) in English</option>
-                  <option>Hadith & Sunnah Studies in English</option>
-                  <option>Classical Arabic (Fusha) for Non-Native Speakers</option>
-                  <option>Teacher Training & Qualification Course</option>
-                  <option>Sanad Ijazah (Hafs & Shu'bah 'an 'Asim)</option>
+                  {courses.map((course) => <option key={course.id}>{course.title}</option>)}
                 </select>
               </div>
 

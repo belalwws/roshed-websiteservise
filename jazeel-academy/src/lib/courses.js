@@ -1,0 +1,51 @@
+export const courses = [
+  {
+    id: 'new-reading-qaidah',
+    title: 'The New Reading Qaidah Course',
+    tag: 'Quran & Tajweed',
+    description: 'Learn to read the Quran and memorize at least 10 short surahs in six months.',
+    highlights: ['Quran reading', 'At least 10 short surahs', 'Six-month course'],
+  },
+  {
+    id: 'memorization',
+    title: 'Memorization Course',
+    tag: 'Quran & Tajweed',
+    description: 'A dedicated course for Quran memorization.',
+    highlights: [],
+  },
+  {
+    id: 'beginners-tajweed',
+    title: 'Beginners Tajweed Course',
+    tag: 'Quran & Tajweed',
+    description: 'Learn the rules of noon sakinah, meem sakinah, madd, and light and heavy letters. Correct your recitation of Surah Al-Baqarah in approximately three months.',
+    highlights: ['Noon sakinah and meem sakinah', 'Madd and light and heavy letters', 'Recitation correction: Surah Al-Baqarah'],
+  },
+  {
+    id: 'advanced-tajweed',
+    title: 'Advanced Tajweed Course',
+    tag: 'Quran & Tajweed',
+    description: 'Study the articulation points and characteristics of the letters, and correct your recitation of Surah Ali Imran.',
+    highlights: ['Articulation points', 'Characteristics of the letters', 'Recitation correction: Surah Ali Imran'],
+  },
+  {
+    id: 'fusha-arabic',
+    title: 'Fusha Arabic Language Course',
+    tag: 'Arabic Language',
+    description: 'Study Al-Arabiyyah Bayna Yadayk.',
+    highlights: ['Al-Arabiyyah Bayna Yadayk'],
+  },
+  {
+    id: 'quranic-arabic',
+    title: 'Quranic Arabic Course',
+    tag: 'Arabic Language',
+    description: 'Study basic grammar and the meanings of 500 Quranic words.',
+    highlights: ['Basic grammar', 'Meanings of 500 Quranic words'],
+  },
+  {
+    id: 'sanatyn-islamic-studies',
+    title: 'Sanatyn Islamic Studies Course',
+    tag: 'Islamic Studies',
+    description: 'Learn the basics of fiqh, aqeedah, seerah, tafseer, Ulum al-Quran, and hadith.',
+    highlights: ['Fiqh and aqeedah', 'Seerah and tafseer', 'Ulum al-Quran and hadith'],
+  },
+];

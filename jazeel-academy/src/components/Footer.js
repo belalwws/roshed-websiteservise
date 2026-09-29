@@ -10,6 +10,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { FacebookIcon, InstagramIcon } from './Icons';
+import { courses } from '../lib/courses';
 
 export default function Footer({ onOpenTrial }) {
   return (
@@ -22,13 +23,13 @@ export default function Footer({ onOpenTrial }) {
               <div className="footer-emblem">
                 <img 
                   src="/assets/logo.jpg" 
-                  alt="Jazeel Academy Emblem" 
+                  alt="Jazeel Quran Teaching Academy Emblem"
                   width={46} 
                   height={46}
                 />
               </div>
               <div>
-                <div className="footer-title">JAZEEL <span style={{ color: 'var(--gold-400)' }}>ACADEMY</span></div>
+                <div className="footer-title">Jazeel <span style={{ color: 'var(--gold-400)' }}>Quran Teaching Academy</span></div>
                 <div className="footer-subtitle">أكاديمية جزيل للقرآن والعلوم الشرعية</div>
               </div>
             </div>
@@ -106,36 +107,13 @@ export default function Footer({ onOpenTrial }) {
           <div className="footer-col">
             <h4>Academic Courses</h4>
             <ul className="footer-links">
-              <li>
-                <Link href="/#programs">
-                  <ChevronRight size={13} /> Quran &amp; Tajweed for Beginners
-                </Link>
-              </li>
-              <li>
-                <Link href="/#programs">
-                  <ChevronRight size={13} /> Advanced Tajweed (Matn Texts)
-                </Link>
-              </li>
-              <li>
-                <Link href="/#programs">
-                  <ChevronRight size={13} /> Islamic Studies in English (Fiqh/Seerah)
-                </Link>
-              </li>
-              <li>
-                <Link href="/#programs">
-                  <ChevronRight size={13} /> Classical Arabic (Fusha) for Non-Arabs
-                </Link>
-              </li>
-              <li>
-                <Link href="/#programs">
-                  <ChevronRight size={13} /> Teacher Training &amp; Pedagogy
-                </Link>
-              </li>
-              <li>
-                <Link href="/#programs">
-                  <ChevronRight size={13} /> Sanad Ijazah (Hafs &amp; Shu'bah)
-                </Link>
-              </li>
+              {courses.map((course) => (
+                <li key={course.id}>
+                  <Link href="/#programs">
+                    <ChevronRight size={13} /> {course.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -222,7 +200,7 @@ export default function Footer({ onOpenTrial }) {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <div>
-            © {new Date().getFullYear()} <strong>Jazeel Academy (أكاديمية جزيل)</strong>. All Rights Reserved.
+            © {new Date().getFullYear()} <strong>Jazeel Quran Teaching Academy (أكاديمية جزيل)</strong>. All Rights Reserved.
           </div>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
             <span>🔒 Safe &amp; Secure 1-on-1 Sessions</span>

@@ -346,7 +346,7 @@ export default function LiveClassesShowcase({ onOpenTrial }) {
                   {activeModalVideo.title}
                 </div>
                 <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)' }}>
-                  Jazeel Academy Official Recorded Session
+                  Jazeel Quran Teaching Academy Official Recorded Session
                 </div>
               </div>
 

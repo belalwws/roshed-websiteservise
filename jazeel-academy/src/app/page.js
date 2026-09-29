@@ -28,218 +28,58 @@ import {
   Calendar
 } from 'lucide-react';
 import { ScrollIcon } from '../components/Icons';
+import { courses } from '../lib/courses';
 
-const COURSES_LIST = [
-  {
-    id: 'arabic-reading-tajweed',
-    title: 'Arabic Reading & Quran Tajweed for Beginners',
-    arabicTitle: 'كورس تعليم قراءة القرآن والتجويد للمبتدئين',
-    tag: 'Quran & Tajweed',
-    level: 'Beginner to Intermediate',
-    language: 'English & Arabic',
-    ageGroup: 'Kids (4+) & Adults',
-    badge: 'Most Popular',
-    desc: 'Designed specifically for non-Arabic speakers. Learn Arabic phonetics, Noorani Qaida, letter articulation (Makharij), and foundational Tajweed rules with patient native Azhari instructors.',
-    highlights: [
-      'Interactive Noorani Qaida & Arabic alphabet',
-      'Accurate Makharij & Sifat pronunciation',
-      'Basic rules: Noon Sakinah, Meem Sakinah & Madd',
-      'Daily recitation practice of short Surahs (Juz Amma)'
-    ]
-  },
-  {
-    id: 'advanced-tajweed',
-    title: 'Theoretical & Practical Advanced Tajweed',
-    arabicTitle: 'كورس تجويد نظري وعملي متقدم باللغة الإنجليزية',
-    tag: 'Quran & Tajweed',
-    level: 'Intermediate to Advanced',
-    language: 'Taught in English',
-    ageGroup: 'Teens & Adults',
-    badge: 'Azhar Standard',
-    desc: 'In-depth study of classical Tajweed poems (Matn Tuhfat Al-Atfal & Al-Jazariyyah) explained in fluent English with continuous practical application during live recitation.',
-    highlights: [
-      'Full study of Tuhfat Al-Atfal & Al-Jazariyyah in English',
-      'Advanced stopping & starting rules (Waqf & Ibtida)',
-      'Detailed study of letter characteristics and subtle errors',
-      'Continuous oral feedback & correction from certified Shuyookh'
-    ]
-  },
-  {
-    id: 'fiqh-essentials',
-    title: 'Islamic Jurisprudence (Fiqh) Essentials',
-    arabicTitle: 'كورس فقه إسلامي باللغة الإنجليزية',
-    tag: 'Islamic Studies',
-    level: 'All Levels',
-    language: 'Taught in English',
-    ageGroup: 'Kids, Teens & Adults',
-    badge: 'Essential Knowledge',
-    desc: 'Understand the fundamental rulings of Taharah (purification), Salah (prayer), Sawm (fasting), Zakah, and practical daily Islamic ethics in clear, modern English.',
-    highlights: [
-      'Step-by-step practical guides to Wudu and Prayer',
-      'Rulings of Fasting, Ramadan & Halal lifestyle',
-      'Contemporary Muslim youth dilemmas & solutions',
-      'Interactive Q&A based on authentic classical schools'
-    ]
-  },
-  {
-    id: 'tafseer-quran',
-    title: 'Tafseer & Quranic Understanding in English',
-    arabicTitle: 'كورس تفسير القرآن الكريم باللغة الإنجليزية',
-    tag: 'Islamic Studies',
-    level: 'All Levels',
-    language: 'Taught in English',
-    ageGroup: 'Teens & Adults',
-    badge: 'Deep Reflection',
-    desc: 'Delve into the meanings, historical contexts (Asbab al-Nuzul), linguistic wonders, and spiritual lessons of the Holy Quran explained through classical Azhari scholarship.',
-    highlights: [
-      'Thematic study of Surahs with life applications',
-      'Reasons for revelation (Asbab Al-Nuzul)',
-      'Spiritual and moral dimensions of Quranic verses',
-      'Connecting Quranic guidance with daily modern life'
-    ]
-  },
-  {
-    id: 'prophetic-seerah',
-    title: 'Prophetic Biography (Seerah) in English',
-    arabicTitle: 'كورس سيرة نبوية عطرة باللغة الإنجليزية',
-    tag: 'Islamic Studies',
-    level: 'All Levels',
-    language: 'Taught in English',
-    ageGroup: 'Kids & Teens Special Track',
-    badge: 'Character Building',
-    desc: 'Inspire your children and family with the noble life, character, leadership, and gentle compassion of Prophet Muhammad ﷺ through storytelling and moral reflections.',
-    highlights: [
-      'Chronological journey from Mecca to Medina',
-      'Lessons on noble character (Akhlaq) and compassion',
-      'Stories of the Sahabah (Companions) and Mothers of Believers',
-      'Engaging story-driven worksheets for young learners'
-    ]
-  },
-  {
-    id: 'hadith-sunnah',
-    title: 'Hadith & Sunnah Studies in English',
-    arabicTitle: 'كورس الحديث الشريف والسنة النبوية',
-    tag: 'Islamic Studies',
-    level: 'Intermediate',
-    language: 'Taught in English',
-    ageGroup: 'Teens & Adults',
-    badge: 'Authentic Sunnah',
-    desc: 'Study classical Hadith collections including Imam Nawawi’s 40 Hadith and Riyad as-Salihin with explanation of Hadith terminology and modern implementation.',
-    highlights: [
-      'Study of Al-Arba’in An-Nawawiyyah (40 Hadith)',
-      'Understanding Hadith authenticity and chains (Isnad)',
-      'Practical daily Sunnahs and etiquette (Adab)',
-      'Memorization of key short Hadiths with translation'
-    ]
-  },
-  {
-    id: 'classical-arabic',
-    title: 'Classical Arabic (Fusha) for Non-Native Speakers',
-    arabicTitle: 'كورس تعليم اللغة العربية الفصحى للناطقين بغيرها',
-    tag: 'Arabic Language',
-    level: 'Beginner to Advanced',
-    language: 'English / Immersion',
-    ageGroup: 'All Ages',
-    badge: 'Fluency Track',
-    desc: 'Master reading, writing, listening, and conversational Arabic using accredited curricula (Madinah Arabic / Bayna Yadayk) tailored for Western learners.',
-    highlights: [
-      'Comprehensive Grammar (Nahw) and Morphology (Sarf)',
-      'Conversational skills for daily and Quranic understanding',
-      'Vocabulary building through contextual stories',
-      'Interactive exercises and digital workbooks'
-    ]
-  },
-  {
-    id: 'teacher-training',
-    title: 'Quran & Tajweed Teacher Training Course',
-    arabicTitle: 'كورس إعداد وتأهيل معلمات القرآن والتجويد',
-    tag: 'Teacher Qualification',
-    level: 'Advanced',
-    language: 'Bilingual (Eng/Ar)',
-    ageGroup: 'Female Aspirants & Teachers',
-    badge: 'Professional Diploma',
-    desc: 'A specialized pedagogy diploma for aspiring sisters and tutors to teach Quran, Tajweed, and Islamic studies to non-Arabic speakers using modern e-learning tools.',
-    highlights: [
-      'Online teaching methodologies & classroom management',
-      'Techniques for addressing English phoneme challenges',
-      'Curriculum planning and student assessment metrics',
-      'Certificate of Completion licensed by Azhar scholars'
-    ]
-  },
-  {
-    id: 'ijazah-sanad',
-    title: 'Sanad Ijazah Program (Hafs & Shu’bah)',
-    arabicTitle: 'منح إجازة مسندة بروايتي حفص وشعبة عن عاصم',
-    tag: 'Ijazah & Sanad',
-    level: 'Advanced Memorizers',
-    language: 'Arabic / English Support',
-    ageGroup: 'Committed Students',
-    badge: 'Connected Chain',
-    desc: 'Recite the entire Holy Quran from memory with rigorous Tajweed precision to an authorized Sanad-holder, receiving a formal connected Ijazah linked back to Prophet Muhammad ﷺ.',
-    highlights: [
-      'Authorized Riwayah: Hafs & Shu’bah ‘an ‘Asim',
-      'Rigorous Khatmah with detailed oral examination',
-      'Official stamped certificate with unbroken chain (Sanad)',
-      '1-on-1 private mentoring with senior Azhari Qari'
-    ]
-  }
-];
 
 export default function HomePage() {
   const [isTrialOpen, setIsTrialOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(courses[0].title);
   const [activeCourseCategory, setActiveCourseCategory] = useState('All');
   const [openFaq, setOpenFaq] = useState(0);
 
-  const courseCategories = ['All', 'Quran & Tajweed', 'Islamic Studies', 'Arabic Language', 'Teacher Qualification', 'Ijazah & Sanad'];
+  const courseCategories = ['All', 'Quran & Tajweed', 'Arabic Language', 'Islamic Studies'];
 
   const filteredCourses = activeCourseCategory === 'All'
-    ? COURSES_LIST
-    : COURSES_LIST.filter(c => c.tag === activeCourseCategory);
+    ? courses
+    : courses.filter(c => c.tag === activeCourseCategory);
 
   const studyTracks = [
     {
-      name: 'Starter Reading & Tajweed Track',
-      arabicName: 'مسار التأسيس والقراءة والتجويد',
-      desc: 'Focused 1-on-1 foundational recitation, Arabic phonetics, and Noorani Qaida for non-native children and beginners.',
-      badge: 'Beginners & Kids',
+      name: 'Quran Reading & Beginner Tajweed',
+      arabicName: 'القراءة والتجويد للمبتدئين',
+      desc: 'The New Reading Qaidah Course and Beginners Tajweed Course.',
+      badge: 'Beginners',
       popular: false,
       features: [
-        '1-on-1 Private Live Lessons with Certified Azhari Tutors',
-        'Noorani Qaida, Makharij & Foundations of Tajweed',
-        'Customized weekly frequency matching student pace',
-        'Direct Monthly Progress Reports to Parents',
-        '24/7 Global Flexible Scheduling & Rescheduling',
-        'Complimentary 1-on-1 Trial Assessment'
+        'Learn to read the Quran',
+        'Memorize at least 10 short surahs in six months in the Qaidah course',
+        'Study noon sakinah, meem sakinah, madd, and light and heavy letters',
+        'Correct recitation of Surah Al-Baqarah in approximately three months'
       ]
     },
     {
-      name: 'Comprehensive Quran & Islamic Studies',
-      arabicName: 'مسار القرآن والعلوم الشرعية بالإنجليزية',
-      desc: 'Combined track offering Quran recitation alongside Fiqh, Seerah, Hadith, and Tafseer taught in fluent English.',
-      badge: '★ Recommended',
+      name: 'Memorization & Advanced Tajweed',
+      arabicName: 'الحفظ والتجويد المتقدم',
+      desc: 'Quran memorization and advanced Tajweed study.',
+      badge: 'Quran Study',
       popular: true,
       features: [
-        '1-on-1 Comprehensive Quran + Islamic Sciences in English',
-        'Specialized Azhari Shuyookh & Muallimat for all ages',
-        'Interactive digital worksheets & practical daily Sunnahs',
-        'Continuous oral feedback & periodic parent WhatsApp updates',
-        'Priority weekend and evening slot coordination',
-        'Complimentary 1-on-1 Trial Assessment'
+        'Dedicated Quran memorization course',
+        'Study the articulation points of the letters',
+        'Learn the characteristics of the letters',
+        'Correct recitation of Surah Ali Imran'
       ]
     },
     {
-      name: 'Sanad Ijazah & Teacher Qualification',
-      arabicName: 'مسار الإجازة المسندة وتأهيل المعلمات',
-      desc: 'Advanced Khatmah recitation for unbroken Sanad connected to Prophet Muhammad ﷺ or Teacher Pedagogy Diploma.',
-      badge: 'Sanad Linked',
+      name: 'Arabic & Islamic Studies',
+      arabicName: 'العربية والعلوم الإسلامية',
+      desc: 'Fusha Arabic, Quranic Arabic, and Sanatyn Islamic Studies.',
+      badge: 'Languages & Studies',
       popular: false,
       features: [
-        'Connected Sanad in Hafs & Shu’bah ‘an ‘Asim',
-        'Rigorous Khatmah oral examination & Matn studies',
-        'Teacher qualification pedagogy for non-Arabic teaching',
-        'Official stamped certification from Al-Azhar scholars',
-        'Dedicated 1-on-1 mentoring with Senior Qaris',
-        'Complimentary 1-on-1 Trial Assessment'
+        'Study Al-Arabiyyah Bayna Yadayk in the Fusha Arabic course',
+        'Learn basic grammar and the meanings of 500 Quranic words',
+        'Study the basics of fiqh, aqeedah, seerah, tafseer, Ulum al-Quran, and hadith'
       ]
     }
   ];
@@ -434,7 +274,7 @@ export default function HomePage() {
       <section className="values-section" id="why-us">
         <div className="container">
           <div className="section-header">
-            <div className="section-tag">Why Jazeel Academy • القيمة الجوهرية</div>
+            <div className="section-tag">Why Jazeel Quran Teaching Academy • القيمة الجوهرية</div>
             <h2 className="section-title">
               Why Discerning Parents &amp; Students <span className="navy-gradient-text">Choose Jazeel</span>
             </h2>
@@ -613,7 +453,7 @@ export default function HomePage() {
               Our Specialized <span className="navy-gradient-text">Academic Programs</span>
             </h2>
             <p className="section-subtitle">
-              Structured courses taught in fluent English and Arabic, adhering to Al-Azhar syllabi for all age groups and proficiencies.
+              Explore Quran reading and memorization, Tajweed, Arabic, and Islamic studies courses.
             </p>
           </div>
 
@@ -634,42 +474,31 @@ export default function HomePage() {
           <div className="courses-grid">
             {filteredCourses.map((course) => (
               <div key={course.id} className="course-card">
-                <div className="course-card-badge">{course.badge}</div>
 
                 <div className="course-card-header">
                   <div className="course-card-tag">{course.tag}</div>
                   <h3 className="course-card-title">{course.title}</h3>
-                  <div className="course-card-arabic">{course.arabicTitle}</div>
                 </div>
 
                 <div className="course-card-body">
-                  <p className="course-card-desc">{course.desc}</p>
+                  <p className="course-card-desc">{course.description}</p>
 
-                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginBottom: '14px' }}>
-                    <span style={{ fontSize: '11px', padding: '3px 8px', borderRadius: '6px', background: 'var(--primary-50)', color: 'var(--primary-700)', fontWeight: 700 }}>
-                      🎯 {course.level}
-                    </span>
-                    <span style={{ fontSize: '11px', padding: '3px 8px', borderRadius: '6px', background: 'var(--gold-100)', color: 'var(--gold-900)', fontWeight: 700 }}>
-                      🌐 {course.language}
-                    </span>
-                    <span style={{ fontSize: '11px', padding: '3px 8px', borderRadius: '6px', background: '#f1f5f9', color: '#475569', fontWeight: 700 }}>
-                      👥 {course.ageGroup}
-                    </span>
-                  </div>
-
-                  <ul className="course-features-list">
+                  {course.highlights.length > 0 && <ul className="course-features-list">
                     {course.highlights.map((h, i) => (
                       <li key={i}>
                         <CheckCircle2 size={14} />
                         <span>{h}</span>
                       </li>
                     ))}
-                  </ul>
+                  </ul>}
                 </div>
 
                 <div className="course-card-footer">
                   <button 
-                    onClick={() => setIsTrialOpen(true)}
+                    onClick={() => {
+                      setSelectedCourse(course.title);
+                      setIsTrialOpen(true);
+                    }}
                     className="button button-gold full"
                   >
                     <Sparkles size={14} />
@@ -698,7 +527,7 @@ export default function HomePage() {
               Start Your Journey in <span className="gold-gradient-text">4 Simple Steps</span>
             </h2>
             <p className="section-subtitle">
-              Getting started at Jazeel Academy is seamless and transparent.
+              Getting started at Jazeel Quran Teaching Academy is seamless and transparent.
             </p>
           </div>
 
@@ -875,7 +704,7 @@ export default function HomePage() {
       <Footer onOpenTrial={() => setIsTrialOpen(true)} />
 
       {/* Free Trial Modal */}
-      <TrialModal isOpen={isTrialOpen} onClose={() => setIsTrialOpen(false)} />
+      <TrialModal isOpen={isTrialOpen} onClose={() => setIsTrialOpen(false)} initialCourse={selectedCourse} />
     </div>
   );
 }
