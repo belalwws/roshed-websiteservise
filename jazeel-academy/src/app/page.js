@@ -464,6 +464,7 @@ export default function HomePage() {
                 key={cat}
                 onClick={() => setActiveCourseCategory(cat)}
                 className={`filter-btn ${activeCourseCategory === cat ? 'active' : ''}`}
+                aria-pressed={activeCourseCategory === cat}
               >
                 {cat}
               </button>
@@ -473,8 +474,11 @@ export default function HomePage() {
           {/* Grid of Courses */}
           <div className="courses-grid">
             {filteredCourses.map((course) => (
-              <div key={course.id} className="course-card">
-
+              <article key={course.id} className={`course-card ${course.id === 'sanatyn-islamic-studies' ? 'course-card-featured' : ''}`}>
+                <div className="course-card-media">
+                  <img src={course.image} alt={course.imageAlt} width="1200" height="800" loading="lazy" decoding="async" />
+                  <span className="course-card-number">{String(courses.indexOf(course) + 1).padStart(2, '0')}</span>
+                </div>
                 <div className="course-card-header">
                   <div className="course-card-tag">{course.tag}</div>
                   <h3 className="course-card-title">{course.title}</h3>
@@ -505,7 +509,7 @@ export default function HomePage() {
                     <span>Book a Free Trial</span>
                   </button>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
 

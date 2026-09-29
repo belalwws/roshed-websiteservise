@@ -2,6 +2,8 @@ export const courses = [
   {
     id: 'new-reading-qaidah',
     title: 'The New Reading Qaidah Course',
+    image: '/assets/courses/new-reading-qaidah.webp',
+    imageAlt: 'Learner following Arabic letters in a reading primer during an online lesson',
     tag: 'Quran & Tajweed',
     description: 'Learn to read the Quran and memorize at least 10 short surahs in six months.',
     highlights: ['Quran reading', 'At least 10 short surahs', 'Six-month course'],
@@ -9,6 +11,8 @@ export const courses = [
   {
     id: 'memorization',
     title: 'Memorization Course',
+    image: '/assets/courses/memorization.webp',
+    imageAlt: 'Open Quran on a wooden stand beside a study notebook',
     tag: 'Quran & Tajweed',
     description: 'A dedicated course for Quran memorization.',
     highlights: [],
@@ -16,6 +20,8 @@ export const courses = [
   {
     id: 'beginners-tajweed',
     title: 'Beginners Tajweed Course',
+    image: '/assets/courses/beginners-tajweed.webp',
+    imageAlt: 'Learner following Quran verses beside an audio lesson',
     tag: 'Quran & Tajweed',
     description: 'Learn the rules of noon sakinah, meem sakinah, madd, and light and heavy letters. Correct your recitation of Surah Al-Baqarah in approximately three months.',
     highlights: ['Noon sakinah and meem sakinah', 'Madd and light and heavy letters', 'Recitation correction: Surah Al-Baqarah'],
@@ -23,6 +29,8 @@ export const courses = [
   {
     id: 'advanced-tajweed',
     title: 'Advanced Tajweed Course',
+    image: '/assets/courses/advanced-tajweed.webp',
+    imageAlt: 'Teacher pointing to a Quran page beside a microphone',
     tag: 'Quran & Tajweed',
     description: 'Study the articulation points and characteristics of the letters, and correct your recitation of Surah Ali Imran.',
     highlights: ['Articulation points', 'Characteristics of the letters', 'Recitation correction: Surah Ali Imran'],
@@ -30,6 +38,8 @@ export const courses = [
   {
     id: 'fusha-arabic',
     title: 'Fusha Arabic Language Course',
+    image: '/assets/courses/fusha-arabic.webp',
+    imageAlt: 'Arabic language workbook with pen and reference books',
     tag: 'Arabic Language',
     description: 'Study Al-Arabiyyah Bayna Yadayk.',
     highlights: ['Al-Arabiyyah Bayna Yadayk'],
@@ -37,6 +47,8 @@ export const courses = [
   {
     id: 'quranic-arabic',
     title: 'Quranic Arabic Course',
+    image: '/assets/courses/quranic-arabic.webp',
+    imageAlt: 'Open Quran beside an Arabic vocabulary notebook and magnifying glass',
     tag: 'Arabic Language',
     description: 'Study basic grammar and the meanings of 500 Quranic words.',
     highlights: ['Basic grammar', 'Meanings of 500 Quranic words'],
@@ -44,6 +56,8 @@ export const courses = [
   {
     id: 'sanatyn-islamic-studies',
     title: 'Sanatyn Islamic Studies Course',
+    image: '/assets/courses/sanatyn-islamic-studies.webp',
+    imageAlt: 'Islamic studies books and an open notebook on a desk',
     tag: 'Islamic Studies',
     description: 'Learn the basics of fiqh, aqeedah, seerah, tafseer, Ulum al-Quran, and hadith.',
     highlights: ['Fiqh and aqeedah', 'Seerah and tafseer', 'Ulum al-Quran and hadith'],
